@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CandleManager : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class CandleManager : MonoBehaviour
                 break;
 
             case 3:
+                SceneManager.LoadScene(1);
                 break;
 
             default:

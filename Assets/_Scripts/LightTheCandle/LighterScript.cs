@@ -17,6 +17,7 @@ public class LighterScript : MonoBehaviour
 
     private void OnEnable()
     {
+        Cursor.visible = false;
         this.m_Collider = GetComponent<Collider2D>();
     }
 
