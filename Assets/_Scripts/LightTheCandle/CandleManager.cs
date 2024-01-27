@@ -12,72 +12,68 @@ public class CandleManager : MonoBehaviour
 
     [SerializeField] private GameObject m_Ghost;
 
-    private List<GameObject> m_SpawnedCandles = new List<GameObject>();
-    private Vector3 m_Position;
+    [SerializeField]private List<CandleScript> m_CandleList = new List<CandleScript>();
 
     private int m_WaveLevel = 1;
-    private int m_GhostLevel = 0;
+    private int m_GhostSpeedMultiplier = 1;
+
+    Vector3 m_Position;
 
     private void OnEnable()
     {
         //StartCoroutine(this.CandleWave());
+        CandleScript[] m_Candles = FindObjectsOfType<CandleScript>();
+
+        foreach (CandleScript candle in m_Candles)
+            this.m_CandleList.Add(candle);
     }
 
     private void Update()
     {
-        switch (this.m_GhostLevel)
-        {
-            case 0:
-                this.m_Ghost.SetActive(false);
-                break;
-
-            case 1:
-                this.m_Ghost.SetActive(true);
-                break;
-
-            case 2:
-                this.m_Ghost.transform.localScale = new Vector3(3.0f, 3.0f);
-                break;
-
-            case 3:
-                SceneManager.LoadScene(1);
-                break;
-
-            default:
-                break;
-        }
+        if (this.m_WaveLevel >= 10)
+            SceneManager.LoadScene(2);
     }
 
     public IEnumerator CandleWave()
     {
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
 
-        for (int i = 0; i < this.m_CandleCount * this.m_WaveLevel; i++)
+        //for (int i = 0; i < this.m_CandleCount * this.m_WaveLevel; i++)
+        //{
+        //    this.m_Position = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-3.0f, 3.0f), 0.0f);
+
+        //    GameObject Candle = Instantiate(this.m_PrefabSpawned, this.m_Position, Quaternion.identity, this.transform);
+        //    this.m_SpawnedCandles.Add(Candle);
+        //}
+
+        yield return new WaitForSeconds(5.0f);
+
+        //foreach (GameObject candle in this.m_SpawnedCandles)
+        //    Destroy(candle);
+        this.m_Ghost.SetActive(true);
+
+        this.m_Position = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-3.0f, 3.0f), 0.0f);
+        this.m_Ghost.transform.position = this.m_Position;
+
+        foreach (CandleScript candle in this.m_CandleList)
         {
-            this.m_Position = new Vector3(Random.Range(-11.0f, 11.0f), Random.Range(-3.0f, 3.0f), 0.0f);
+            int m_Random = Random.Range(0,10);
 
-            GameObject Candle = Instantiate(this.m_PrefabSpawned, this.m_Position, Quaternion.identity, this.transform);
-            this.m_SpawnedCandles.Add(Candle);
+            if (m_Random > 5)
+                candle.LitState = false;
         }
 
-        yield return new WaitForSeconds(5 * this.m_WaveLevel + 5);
+        this.m_GhostSpeedMultiplier = 1;
 
-        foreach (GameObject candle in this.m_SpawnedCandles)
-        {
-            if (candle.gameObject.GetComponent<CandleScript>().LitState == false)
-            {
-                this.m_GhostLevel++;
-                break;
-            }
-        }
+        foreach (CandleScript candle in this.m_CandleList)
+            if (candle.LitState == false)
+                this.m_GhostSpeedMultiplier++;
 
-        foreach (GameObject candle in this.m_SpawnedCandles)
-            Destroy(candle);
+        this.m_Ghost.GetComponent<GhostScript>().SpeedMultiplier = this.m_GhostSpeedMultiplier;
 
-        if (this.m_WaveLevel < 5)
+        if (this.m_WaveLevel < 10)
             this.m_WaveLevel++;
 
-        this.m_SpawnedCandles.Clear();
         this.StartCoroutine(this.CandleWave());
     }
 }

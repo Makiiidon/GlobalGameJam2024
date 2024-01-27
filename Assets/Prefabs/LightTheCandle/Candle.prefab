@@ -257,3 +257,5 @@ MonoBehaviour:
   m_LitCandle: {fileID: 21300000, guid: 88f28a56e1abf92428b1de8c9d86f170, type: 3}
   m_UnlitCandle: {fileID: 21300000, guid: b054e3e2b166d3042a5e46d7990d427c, type: 3}
   m_Candlelight: {fileID: 313756014324583727}
+  m_UnlitColor: {r: 0.8490566, g: 0.6915515, b: 0.33962262, a: 1}
+  m_LitColor: {r: 1, g: 0.5838506, b: 0.1830188, a: 1}
