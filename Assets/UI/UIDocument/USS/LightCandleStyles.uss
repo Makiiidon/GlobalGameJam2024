@@ -1,1 +1,7 @@
-VisualElement {}
+.unity-image {
+    --unity-image-size: scale-to-fit;
+}
+
+#ScrollIcon {
+	--unity-image: url('/Assets/Sprites/LightTheCandle/UI/ScrollMouse.png');
+}

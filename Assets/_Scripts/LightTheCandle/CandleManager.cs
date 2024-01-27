@@ -19,7 +19,7 @@ public class CandleManager : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(this.CandleWave());
+        //StartCoroutine(this.CandleWave());
     }
 
     private void Update()
@@ -35,7 +35,7 @@ public class CandleManager : MonoBehaviour
                 break;
 
             case 2:
-                this.m_Ghost.transform.localScale = new Vector3(6.0f, 6.0f);
+                this.m_Ghost.transform.localScale = new Vector3(3.0f, 3.0f);
                 break;
 
             case 3:
@@ -46,7 +46,7 @@ public class CandleManager : MonoBehaviour
         }
     }
 
-    private IEnumerator CandleWave()
+    public IEnumerator CandleWave()
     {
         yield return new WaitForSeconds(2);
 
