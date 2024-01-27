@@ -29,6 +29,7 @@ public class SpeechRecognition : MonoBehaviour
     [SerializeField] Sprite sadFace;
     [SerializeField] Sprite cryFace;
     [SerializeField] Sprite happyFace;
+    [SerializeField] Sprite elatedFace;
 
     [SerializeField] private string yes = "Yes";
     [SerializeField] private string no = "No";
@@ -86,7 +87,11 @@ public class SpeechRecognition : MonoBehaviour
             happinessMeter = 3;
         }
 
-        if (happinessMeter >= 2)
+        if (happinessMeter >= 3)
+        {
+            renderer.sprite = elatedFace;
+        }
+        else if (happinessMeter >= 2)
         {
             renderer.sprite = happyFace;
         } 
