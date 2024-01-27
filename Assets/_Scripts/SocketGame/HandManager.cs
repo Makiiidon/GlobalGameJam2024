@@ -19,6 +19,7 @@ public class HandManager : MonoBehaviour
     [SerializeField] private float pullForce;
 
     [SerializeField] private bool isGameOver = false;
+    [SerializeField] private bool isInstructionFinished = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,29 +30,32 @@ public class HandManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isGameOver) 
+        if (isInstructionFinished)
         {
-            // Slowly move towards the outlet
-            handPrefab.transform.position += new Vector3(0, speed * Time.deltaTime, 0);
-
-            // Randomly swerve after certain intervals
-            ticks += Time.deltaTime;
-            if (ticks > SWERVE_INTERVAL)
+            if (!isGameOver)
             {
-                ticks = 0.0f;
-                RandomSwerve();
-                SWERVE_INTERVAL = Random.Range(minSwerveInterval, maxSwerveInterval);
-            }
+                // Slowly move towards the outlet
+                handPrefab.transform.position += new Vector3(0, speed * Time.deltaTime, 0);
 
-            // Bring back hand using scroll wheel down
-            if (Input.mouseScrollDelta.y < 0)
-            {
-                rb.AddForce(new Vector2(0, -1.0f * pullForce * Time.deltaTime));
+                // Randomly swerve after certain intervals
+                ticks += Time.deltaTime;
+                if (ticks > SWERVE_INTERVAL)
+                {
+                    ticks = 0.0f;
+                    RandomSwerve();
+                    SWERVE_INTERVAL = Random.Range(minSwerveInterval, maxSwerveInterval);
+                }
+
+                // Bring back hand using scroll wheel down
+                if (Input.mouseScrollDelta.y < 0)
+                {
+                    rb.AddForce(new Vector2(0, -1.0f * pullForce * Time.deltaTime));
+                }
             }
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
         }
     }
 
@@ -74,10 +78,20 @@ public class HandManager : MonoBehaviour
     public bool GetIsGameOver()
     {
         return isGameOver;
-    }    
+    }
+
+    public bool GetIsInstructionFinished()
+    {
+        return isInstructionFinished;
+    }
 
     public void SetIsGameOver(bool flag)
     {
         isGameOver = flag;
+    }
+
+    public void SetIsInstructionFinished(bool flag)
+    {
+        isInstructionFinished = flag;
     }
 }

@@ -24,25 +24,28 @@ public class AreaManager : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if(!handManager.GetIsGameOver())
+        if(handManager.GetIsInstructionFinished())
         {
-            if (isLeft)
+            if (!handManager.GetIsGameOver())
             {
-                if (Input.GetMouseButtonDown(0))
+                if (isLeft)
                 {
-                    //Debug.Log("Left Area Click");
-                    rb.AddForce(new Vector2(-swerveForce * Time.deltaTime, 0));
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        //Debug.Log("Left Area Click");
+                        rb.AddForce(new Vector2(-swerveForce * Time.deltaTime, 0));
 
+                    }
                 }
-            }
-            else
-            {
-                if (Input.GetMouseButtonDown(0))
+                else
                 {
-                    //Debug.Log("Right Area Click");
-                    rb.AddForce(new Vector2(swerveForce * Time.deltaTime, 0));
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        //Debug.Log("Right Area Click");
+                        rb.AddForce(new Vector2(swerveForce * Time.deltaTime, 0));
+                    }
                 }
             }
-        }  
+        }
     }
 }
