@@ -52,11 +52,13 @@ public class SpeechRecognition : MonoBehaviour
         actions.Add(no, NoFunction);
         foreach (string str in negative)
         {
-            actions.Add(str, NegativeFeedback);
+            if(!actions.ContainsKey(str))
+                actions.Add(str, NegativeFeedback);
         }
         foreach (string str in positive)
         {
-            actions.Add(str, PositiveFeedback);
+            if (!actions.ContainsKey(str))
+                actions.Add(str, PositiveFeedback);
         }
 
         //Debug.Log("Dont worry this code works");

@@ -5199,7 +5199,7 @@ MonoBehaviour:
   maxThreshold: 10
   prevVolume: 0
   meter: {fileID: 1767971916}
-  outOfRangeTime: 2
+  outOfRangeTime: 1.2
   happinessMeter: -3
   timeInterval: 0.05
   yOffset: -0.1
@@ -5285,6 +5285,40 @@ MonoBehaviour:
   - Whose a good boy
   - Baybee
   - Baby bottle
+  - Bah bah
+  - Black sheep
+  - Parents
+  - Cute
+  - Sorry
+  - Ball
+  - Calm down baby
+  - Never gonna make you cry
+  - Never gonna say goodbye
+  - And hurt you
+  - Nver gonna tell a lie
+  - Meeyow
+  - Nya
+  - Good Baby
+  - Nice
+  - You're nice
+  - You are nice
+  - Noice
+  - More allowance
+  - Bluey
+  - You're my star
+  - I love you so much
+  - Do you want candy
+  - I love you so much
+  - You're nice
+  - Sorry
+  - I apoligize
+  - Animal sounds
+  - Cute
+  - You're very cute
+  - Kafka
+  - Vegetable
+  - You're pretty
+  - Vegetable
   negative:
   - Bad
   - Fuck you
@@ -5338,10 +5372,12 @@ MonoBehaviour:
   - Medicine
   - Be quiet
   - Why are you bald
-  - Stop
   - No cellphone
   - Why are you like that
   - No one loves you
+  - I'm getting annoyed
+  - Keep crying
+  - You're pretty ugly
   tutorialText: {fileID: 1179799331}
 --- !u!114 &433970801
 MonoBehaviour:
@@ -10839,7 +10875,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.25
+  m_fontSize: 38.85
   m_fontSizeBase: 37.26
   m_fontWeight: 400
   m_enableAutoSizing: 1
