@@ -5,6 +5,7 @@ using UnityEngine.Windows.Speech;
 using System.Linq;
 using System;
 using UnityEngine.UI;
+using TMPro;
 
 public class SpeechRecognition : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class SpeechRecognition : MonoBehaviour
 
     float timeStep = 0;
     [SerializeField] float timeInterval = 0.3f;
+    [SerializeField] float yOffset = 0.3f;
 
     [SerializeField] SpriteRenderer renderer;
     [SerializeField] Sprite neutralFace;
@@ -31,12 +33,18 @@ public class SpeechRecognition : MonoBehaviour
     [SerializeField] Sprite happyFace;
     [SerializeField] Sprite elatedFace;
 
+    [SerializeField] ParticleSystem particleUp;
+    [SerializeField] ParticleSystem particleDown;
+    [SerializeField] ParticleSystem particleSparkle;
+    [SerializeField] ParticleSystem particleQuestion;
+
     [SerializeField] private string yes = "Yes";
     [SerializeField] private string no = "No";
     [SerializeField] private List<string> positive = new List<string>();
     [SerializeField] private List<string> negative = new List<string>();
 
-
+    [SerializeField] TMP_Text tutorialText;
+    bool startTutAnim = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +65,8 @@ public class SpeechRecognition : MonoBehaviour
         keywordRecognizer.Start();
 
         mic = GetComponent<MicLoudnessDetector>();
+        StartCoroutine(AnimateTutorial());
+
     }
 
     private void OnEnable()
@@ -66,7 +76,7 @@ public class SpeechRecognition : MonoBehaviour
         if(!mic) mic = GetComponent<MicLoudnessDetector>();
 
         keywordRecognizer.Start();
-
+        StartCoroutine(AnimateTutorial()); 
     }
     private void OnDisable()
     {
@@ -78,35 +88,45 @@ public class SpeechRecognition : MonoBehaviour
     {
         if (!mic) mic = GetComponent<MicLoudnessDetector>();
 
-        if (happinessMeter < -3)
+        if (startTutAnim)
         {
-            happinessMeter = -3;
-        }
-        if (happinessMeter > 3)
-        {
-            happinessMeter = 3;
-        }
-
-        if (happinessMeter >= 3)
-        {
-            renderer.sprite = elatedFace;
-        }
-        else if (happinessMeter >= 2)
-        {
-            renderer.sprite = happyFace;
-        } 
-        else if (happinessMeter <= -2)
-        {
-            renderer.sprite = cryFace;
-        }
-        else if (happinessMeter == -1)
-        {
-            renderer.sprite = sadFace;
+            float alpha = Mathf.Abs( Mathf.Sin(Time.time * 5) ) * 0.5f + 0.5f; // Scale to 0 to 1 range
+            Color output = new Color(tutorialText.color.r, tutorialText.color.g, tutorialText.color.b, alpha);
+            tutorialText.color = output;
         }
         else
         {
-            renderer.sprite = neutralFace;
+            if(tutorialText.color.a != 0)
+            {
+                float alpha = Mathf.Lerp(tutorialText.color.a, 0, Time.deltaTime * 10);
+                Color output = new Color(tutorialText.color.r, tutorialText.color.g, tutorialText.color.b, alpha);
+                tutorialText.color = output;
+            }
         }
+
+        if (happinessMeter < -3)
+            happinessMeter = -3;
+
+        if (happinessMeter > 3)
+            happinessMeter = 3;
+        
+
+        if (happinessMeter >= 3)
+            renderer.sprite = elatedFace;
+        
+        else if (happinessMeter >= 2)      
+            renderer.sprite = happyFace;
+        
+        else if (happinessMeter <= -2)       
+            renderer.sprite = cryFace;
+        
+        else if (happinessMeter == -1)    
+            renderer.sprite = sadFace;
+        
+        else
+            renderer.sprite = neutralFace;
+
+        renderer.gameObject.transform.position = new Vector2(0, ((float)Math.Sin(Time.time)/4) + yOffset);
 
         if (timeInterval + timeStep < Time.time)
         {
@@ -128,13 +148,13 @@ public class SpeechRecognition : MonoBehaviour
             if (outOfRangeTimer >= outOfRangeTime)
             {
                 // The volume has been out of range for yourDesiredDuration seconds
-                Debug.Log("Volume out of range for too long");
+                //Debug.Log("Volume out of range for too long");
                 // Additional actions or logic can be added here
+                particleDown.Play();
 
                 // increase sad counter
                 happinessMeter--;
-
-                
+                outOfRangeTimer = 0.0f;
             }
         }
         else
@@ -151,31 +171,48 @@ public class SpeechRecognition : MonoBehaviour
 
     void YesFunction()
     {
-        Debug.Log("Yes");
+        //Debug.Log("Yes");
     }
 
     void NoFunction()
     {
-        Debug.Log("No");
+        //Debug.Log("No");
     }
 
     void NegativeFeedback()
     {
-        Debug.Log("Bad");
+        //Debug.Log("Bad");
         happinessMeter--;
+        particleDown.Play();
     }
 
     void PositiveFeedback()
     {
-        Debug.Log("Good");
+        //Debug.Log(word);
         happinessMeter++;
+        if(happinessMeter >= 3)
+            particleSparkle.Play();
+        else
+            particleUp.Play();
     }
 
     void RecognizeSpeech(PhraseRecognizedEventArgs speech)
     {
-        //Debug.Log(speech);
-        //if (!actions.ContainsKey(speech.text)) return;  
+        //Debug.Log(speech.text);
+        if (!actions.ContainsKey(speech.text))
+        {
+            particleQuestion.Play();
+            return;
+        }
         actions[speech.text].Invoke();
-        //actions.Remove(speech.text);
+        actions.Remove(speech.text);
+    }
+
+    IEnumerator AnimateTutorial()
+    {
+        startTutAnim = true;
+        yield return new WaitForSeconds(5.0f);
+        startTutAnim = false;
+
     }
 }
