@@ -5,6 +5,7 @@ using UnityEngine;
 public class LighterScript : MonoBehaviour
 {
     private Collider2D m_Collider;
+    private float m_ScrollValue;
 
     private void OnEnable()
     {
@@ -18,10 +19,16 @@ public class LighterScript : MonoBehaviour
         m_Position.z += Camera.main.nearClipPlane;
         this.gameObject.transform.position = m_Position;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Mathf.Abs(Input.mouseScrollDelta.y) == 1.0f)
+            this.m_ScrollValue += 0.1f;
+
+
+        if (this.m_ScrollValue > 1.0f)
         {
             this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             this.m_Collider.enabled = true;
+
+            this.m_ScrollValue = 0.0f;
             this.StartCoroutine(this.Flicker(0.5f));
         }
     }
@@ -39,16 +46,11 @@ public class LighterScript : MonoBehaviour
         this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         this.m_Collider.enabled = false;
         this.StopCoroutine(this.Flicker(delay));
-        Debug.Log("ENDED");
- 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Candle"))
-        {
-            Debug.Log("Hit");
             collision.gameObject.transform.GetChild(0).gameObject.SetActive(true); //Change when assets are done
-        }
     }
 }
