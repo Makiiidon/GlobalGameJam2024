@@ -10,15 +10,19 @@ public class RayHit : MonoBehaviour
     private bool isHold = false;
     private GameObject m_HoldObject;
     private Vector3 m_PrevPosition;
+   
 
     //Reference Dropping Off
     [SerializeField] private GameObject m_MixingObject;
+    
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnEnable()
     {
-        m_Camera = GetComponent<Camera>();   
+        m_Camera = GetComponent<Camera>();
+
     }
+
 
     // Update is called once per frame
     void Update()
@@ -27,7 +31,7 @@ public class RayHit : MonoBehaviour
         {
             Debug.Log("Trigger Left Click");
             RegisterHit();
-            isHold  = true;
+            isHold = true;
         }
 
         if (Input.GetMouseButton(0) && isHold && m_HoldObject != null)
@@ -52,11 +56,13 @@ public class RayHit : MonoBehaviour
 
         if (hit.collider != null)
         {
+            if (hit.collider.gameObject.name == "Food Bottle")
+                return;
+
             m_HoldObject = hit.collider.gameObject;
             m_PrevPosition = hit.collider.gameObject.transform.position;
-            //Debug.Log(hit.collider.gameObject.name);
-            //Debug.Log("Target Position: " + hit.collider.gameObject.transform.position);
             
+
         }
     }
 
@@ -68,23 +74,25 @@ public class RayHit : MonoBehaviour
 
     private void ObjectRelease()
     {
-        m_HoldObject.transform.position = new Vector3(m_PrevPosition.x, m_PrevPosition.y, m_PrevPosition.z);
-
-        //Check if its inside the boundaries
-        if (m_HoldObject.GetComponent<Collider2D>().bounds.Intersects
-            (m_MixingObject.GetComponent<Collider2D>().bounds))
-        {
-            Debug.Log("Bounds intersecting");
-        }
-
+        
+     
         //Check if its task are completed
-
+        FoodGameManager manager = m_MixingObject.GetComponent<FoodGameManager>();
+        if (manager.IsValidIngredient())
+        {
+            Debug.Log("Accepted Ingredient");
+            manager.ResetTrigger();
+        }
 
         //Remove Hold Position
 
-       
+        if (m_HoldObject != null)
+            m_HoldObject.transform.position = new Vector3(m_PrevPosition.x, m_PrevPosition.y, m_PrevPosition.z);
+
 
         m_PrevPosition = Vector3.zero;
         m_HoldObject = null;
     }
+
+
 }
