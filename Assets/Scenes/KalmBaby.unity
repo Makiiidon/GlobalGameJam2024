@@ -5199,7 +5199,7 @@ MonoBehaviour:
   maxThreshold: 10
   prevVolume: 0
   meter: {fileID: 1767971916}
-  outOfRangeTime: 1.2
+  outOfRangeTime: 2
   happinessMeter: -3
   timeInterval: 0.05
   yOffset: -0.1
@@ -5273,6 +5273,18 @@ MonoBehaviour:
   - You sure you want a cookie
   - Calm down
   - Just smile
+  - Meow
+  - Hi
+  - I'm Sorry
+  - Forgive me
+  - Little Star
+  - What you are
+  - Never gonna run around
+  - And desert you
+  - Good job
+  - Whose a good boy
+  - Baybee
+  - Baby bottle
   negative:
   - Bad
   - Fuck you
@@ -5326,6 +5338,10 @@ MonoBehaviour:
   - Medicine
   - Be quiet
   - Why are you bald
+  - Stop
+  - No cellphone
+  - Why are you like that
+  - No one loves you
   tutorialText: {fileID: 1179799331}
 --- !u!114 &433970801
 MonoBehaviour:
@@ -10823,7 +10839,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.85
+  m_fontSize: 49.25
   m_fontSizeBase: 37.26
   m_fontWeight: 400
   m_enableAutoSizing: 1

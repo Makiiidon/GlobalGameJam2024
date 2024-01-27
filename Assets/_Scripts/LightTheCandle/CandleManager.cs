@@ -60,7 +60,7 @@ public class CandleManager : MonoBehaviour
             this.m_SpawnedCandles.Add(Candle);
         }
 
-        yield return new WaitForSeconds(5 * this.m_WaveLevel);
+        yield return new WaitForSeconds(5 * this.m_WaveLevel + 5);
 
         foreach (GameObject candle in this.m_SpawnedCandles)
         {
