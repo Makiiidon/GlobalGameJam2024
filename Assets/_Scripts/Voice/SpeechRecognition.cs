@@ -45,6 +45,8 @@ public class SpeechRecognition : MonoBehaviour
 
     [SerializeField] TMP_Text tutorialText;
     bool startTutAnim = false;
+
+    int gameOverCtr = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -157,6 +159,8 @@ public class SpeechRecognition : MonoBehaviour
                 // increase sad counter
                 happinessMeter--;
                 outOfRangeTimer = 0.0f;
+                if(happinessMeter < 2)
+                    gameOverCtr++;
             }
         }
         else
@@ -167,7 +171,10 @@ public class SpeechRecognition : MonoBehaviour
             // Additional logic when volume is within range can be added here
         }
 
-        
+        if (gameOverCtr >= 2)
+        {
+            // Add Game Over
+        }
     }
 
 
