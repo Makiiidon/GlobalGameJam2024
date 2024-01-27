@@ -11,6 +11,9 @@ public class SocketManager : MonoBehaviour
     private GameObject hand;
     [SerializeField] private GameObject electricity;
 
+    // End Dialogue
+    [SerializeField] private GameObject endText1;
+    [SerializeField] private GameObject endText2;
 
 
     // Start is called before the first frame update
@@ -30,13 +33,14 @@ public class SocketManager : MonoBehaviour
         handManager.SetIsGameOver(true);
         shakeFX.SetActive(false);
 
-        hand = handManager.gameObject;   
-        if(hand.transform.position.x == perfectX)
+        hand = handManager.gameObject;
+        if (hand.transform.position.x == perfectX)
         {
             Debug.Log("PERFECT");
             StartCoroutine(RevealPlug());
+
         }
-        else if((hand.transform.position.x > perfectX && hand.transform.position.x <= perfectX + allowance) ||
+        else if ((hand.transform.position.x > perfectX && hand.transform.position.x <= perfectX + allowance) ||
                 (hand.transform.position.x < perfectX && hand.transform.position.x >= perfectX - allowance))
         {
             Debug.Log("Close Enough.");
@@ -47,22 +51,35 @@ public class SocketManager : MonoBehaviour
             Debug.Log("Where are you aiming, granpapi?");
 
             StartCoroutine(RevealPlug());
-            StartCoroutine(TriggerElectricity());   
+            StartCoroutine(TriggerElectricity());
         }
     }
 
     IEnumerator RevealPlug()
     {
-        Animator handAnimator = hand.GetComponent<Animator>();  
+        Animator handAnimator = hand.GetComponent<Animator>();
         yield return new WaitForSeconds(0.5f);
         handAnimator.SetTrigger("checkPlug");
+
+        // Oh
+        yield return new WaitForSeconds(1.5f);
+        endText1.SetActive(true);
+
+        // This plug has 4 pins
+        // Oh
+        yield return new WaitForSeconds(1.5f);
+        endText2.SetActive(true);
     }
 
     IEnumerator TriggerElectricity()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(4.0f);
         electricity.SetActive(true);
         Animator animator = electricity.GetComponent<Animator>();
         animator.SetTrigger("didExplode");
     }
+
+    
 }
+
+ 

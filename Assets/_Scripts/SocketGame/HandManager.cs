@@ -34,6 +34,16 @@ public class HandManager : MonoBehaviour
         {
             if (!isGameOver)
             {
+                // Bounds of screen
+                if (handPrefab.transform.position.x < -7.35f)
+                {
+                    handPrefab.transform.position = new Vector3(-7.35f, handPrefab.transform.position.y, handPrefab.transform.position.z);
+                }
+                else if(handPrefab.transform.position.x > 7.08f)
+                {
+                    handPrefab.transform.position = new Vector3(7.08f, handPrefab.transform.position.y, handPrefab.transform.position.z);
+                }
+
                 // Slowly move towards the outlet
                 handPrefab.transform.position += new Vector3(0, speed * Time.deltaTime, 0);
 
@@ -72,7 +82,7 @@ public class HandManager : MonoBehaviour
 
         swerveForce = Random.Range(minSwerveForce, maxSwerveForce);
 
-        rb.AddForce(new Vector2(randX * swerveForce * Time.deltaTime, randY * swerveForce * Time.deltaTime));
+        rb.AddForce(new Vector2(randX * swerveForce * Time.deltaTime, randY * swerveForce / 2.0f * Time.deltaTime));
     }
 
     public bool GetIsGameOver()
