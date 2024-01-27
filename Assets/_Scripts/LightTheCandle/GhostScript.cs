@@ -18,8 +18,8 @@ public class GhostScript : MonoBehaviour
         {
             Vector3 m_NewVector = this.gameObject.transform.localScale;
 
-            m_NewVector.x -= 0.003f;
-            m_NewVector.y -= 0.003f;
+            m_NewVector.x -= 0.002f;
+            m_NewVector.y -= 0.002f;
 
             this.gameObject.transform.localScale = m_NewVector;
         }
@@ -39,8 +39,8 @@ public class GhostScript : MonoBehaviour
         {
             Vector3 m_NewVector = this.gameObject.transform.localScale;
 
-            m_NewVector.x += this.m_GhostSpeed * this.m_SpeedMultiplier / 5.0f;
-            m_NewVector.y += this.m_GhostSpeed * this.m_SpeedMultiplier / 5.0f;
+            m_NewVector.x += this.m_GhostSpeed * this.m_SpeedMultiplier / 4.0f;
+            m_NewVector.y += this.m_GhostSpeed * this.m_SpeedMultiplier / 4.0f;
 
             this.gameObject.transform.localScale = m_NewVector;
         }
