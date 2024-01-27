@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class LighterScript : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class LighterScript : MonoBehaviour
 
     [SerializeField] private Sprite m_LitLighter;
     [SerializeField] private Sprite m_UnlitLighter;
+
+    [SerializeField] private GameObject m_LighterLight;
 
     private void OnEnable()
     {
@@ -41,10 +44,12 @@ public class LighterScript : MonoBehaviour
         {
             case true:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = this.m_LitLighter;
+                this.m_LighterLight.GetComponent<Light2D>().enabled = true;
                 break;
 
             case false:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = this.m_UnlitLighter;
+                this.m_LighterLight.GetComponent<Light2D>().enabled = false;
                 break;
         }
     }
