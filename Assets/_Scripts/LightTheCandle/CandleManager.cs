@@ -9,15 +9,42 @@ public class CandleManager : MonoBehaviour
     [SerializeField] private int m_CandleCount = 5;
     [SerializeField] private GameObject m_PrefabSpawned;
 
+    [SerializeField] private GameObject m_Ghost;
+
     private List<GameObject> m_SpawnedCandles = new List<GameObject>();
     private Vector3 m_Position;
 
     private int m_WaveLevel = 1;
+    private int m_GhostLevel = 0;
 
     // Start is called before the first frame update
     private void OnEnable()
     {
         StartCoroutine(this.CandleWave());
+    }
+
+    private void Update()
+    {
+        switch (this.m_GhostLevel)
+        {
+            case 0:
+                this.m_Ghost.SetActive(false);
+                break;
+
+            case 1:
+                this.m_Ghost.SetActive(true);
+                break;
+
+            case 2:
+                this.m_Ghost.transform.localScale = new Vector3(6.0f, 6.0f);
+                break;
+
+            case 3:
+                break;
+
+            default:
+                break;
+        }
     }
 
     private IEnumerator CandleWave()
@@ -33,6 +60,15 @@ public class CandleManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(5 * this.m_WaveLevel * 0.8f);
+
+        foreach (GameObject candle in this.m_SpawnedCandles)
+        {
+            if (candle.gameObject.GetComponent<CandleScript>().LitState == false)
+            {
+                this.m_GhostLevel++;
+                break;
+            }
+        }
 
         foreach (GameObject candle in this.m_SpawnedCandles)
             Destroy(candle);

@@ -51,6 +51,6 @@ public class LighterScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Candle"))
-            collision.gameObject.transform.GetChild(0).gameObject.SetActive(true); //Change when assets are done
+            collision.gameObject.GetComponent<CandleScript>().LitState = true;
     }
 }
