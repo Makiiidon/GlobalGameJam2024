@@ -7,6 +7,11 @@ public class LighterScript : MonoBehaviour
     private Collider2D m_Collider;
     private float m_ScrollValue;
 
+    private bool m_LitState;
+
+    [SerializeField] private Sprite m_LitLighter;
+    [SerializeField] private Sprite m_UnlitLighter;
+
     private void OnEnable()
     {
         this.m_Collider = GetComponent<Collider2D>();
@@ -25,11 +30,22 @@ public class LighterScript : MonoBehaviour
 
         if (this.m_ScrollValue > 1.0f)
         {
-            this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            this.m_LitState = true;
             this.m_Collider.enabled = true;
 
             this.m_ScrollValue = 0.0f;
             this.StartCoroutine(this.Flicker(0.5f));
+        }
+
+        switch (this.m_LitState)
+        {
+            case true:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = this.m_LitLighter;
+                break;
+
+            case false:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = this.m_UnlitLighter;
+                break;
         }
     }
 
@@ -43,7 +59,7 @@ public class LighterScript : MonoBehaviour
             m_Rand = Random.Range(0, 10);
         }
 
-        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        this.m_LitState = false;
         this.m_Collider.enabled = false;
         this.StopCoroutine(this.Flicker(delay));
     }

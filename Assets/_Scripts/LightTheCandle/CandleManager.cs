@@ -17,7 +17,6 @@ public class CandleManager : MonoBehaviour
     private int m_WaveLevel = 1;
     private int m_GhostLevel = 0;
 
-    // Start is called before the first frame update
     private void OnEnable()
     {
         StartCoroutine(this.CandleWave());
@@ -59,7 +58,7 @@ public class CandleManager : MonoBehaviour
             this.m_SpawnedCandles.Add(Candle);
         }
 
-        yield return new WaitForSeconds(5 * this.m_WaveLevel * 0.8f);
+        yield return new WaitForSeconds(5 * this.m_WaveLevel);
 
         foreach (GameObject candle in this.m_SpawnedCandles)
         {
