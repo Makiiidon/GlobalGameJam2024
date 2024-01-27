@@ -29,7 +29,7 @@ public class RayHit : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !isHold)
         {
-            Debug.Log("Trigger Left Click");
+            
             RegisterHit();
             isHold = true;
         }
@@ -37,14 +37,14 @@ public class RayHit : MonoBehaviour
         if (Input.GetMouseButton(0) && isHold && m_HoldObject != null)
         {
             //Hold Function
-            Debug.Log("Hold Left Click");
+          
             HoldObject();
         }
 
         if (Input.GetMouseButtonUp(0) && isHold)
         {
             //Drop Function
-            Debug.Log("Release Left Click");
+           
             ObjectRelease();
             isHold = false;
         }
@@ -78,12 +78,12 @@ public class RayHit : MonoBehaviour
      
         //Check if its task are completed
         FoodGameManager manager = m_MixingObject.GetComponent<FoodGameManager>();
-        if (manager.IsValidIngredient())
-        {
-            Debug.Log("Accepted Ingredient");
-            manager.ResetTrigger();
-        }
-
+        //if (manager.IsValidIngredient())
+        //{
+        //    Debug.Log("Accepted Ingredient");
+        //}
+        manager.ResetTrigger();
+       
         //Remove Hold Position
 
         if (m_HoldObject != null)
