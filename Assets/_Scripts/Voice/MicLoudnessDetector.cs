@@ -6,7 +6,10 @@ public class MicLoudnessDetector : MonoBehaviour
 {
     private string micName;
     [SerializeField] private AudioSource micSource;
+    [SerializeField] private float micSensitivity = 10.0f;
     private const int sampleWindow = 64;
+
+    private float micSoundVolume = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,7 @@ public class MicLoudnessDetector : MonoBehaviour
     void Update()
     {
         //Debug.Log("Loudness "+ GetLoudness(Microphone.GetPosition(micName), micSource.clip));
+        micSoundVolume = GetLoudness(Microphone.GetPosition(micName), micSource.clip);
     }
 
     float GetLoudness(int clipPos, AudioClip clip)
@@ -47,7 +51,12 @@ public class MicLoudnessDetector : MonoBehaviour
             loudness += Mathf.Abs(waveData[i]);
         }
 
-        return loudness / sampleWindow;
+        return (loudness / sampleWindow) * micSensitivity;
+    }
+
+    public float GetSound()
+    {
+        return micSoundVolume;
     }
 
     public void DisplayMicrophones()
