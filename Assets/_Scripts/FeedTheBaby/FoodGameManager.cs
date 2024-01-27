@@ -52,6 +52,8 @@ public class FoodGameManager : MonoBehaviour
             Debug.LogError("Ingredient 1");
             valAssigned = valAssigned - 4;
             myTask1 = true;
+
+            //Wait for the animation to end
             referenceFood.SetActive(false);
         }
 
@@ -60,6 +62,9 @@ public class FoodGameManager : MonoBehaviour
             Debug.LogError("Ingredient 2");
             //valAssigned = valAssigned;
             myTask2 = true;
+
+
+            //Wait for the animation to end
             referenceFood.SetActive(false);
         }
 
@@ -77,6 +82,32 @@ public class FoodGameManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void ProcessResults()
+    {
+        //Win Condition
+        if (waterVal == 1 && milkVal == 1)
+        {
+            //Send the information and proceed to next minigame
+            return;
+        }
+
+        //Lose
+        else
+        {
+            if (milkVal == 2 && waterVal == 1)
+            {
+                //Gigachad
+                return;
+            }
+
+            else
+            {
+                //Default Lose
+                return;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -112,6 +143,4 @@ public class FoodGameManager : MonoBehaviour
         }
 
     }
-
-   
 }
