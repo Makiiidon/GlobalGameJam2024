@@ -135,15 +135,14 @@ public class GameHandler : MonoBehaviour
                     currentAngle -= 360.0f;
                    
                 }
-                Debug.Log("Current Angle: " + currentAngle);
                 if (currentAngle >= -5.0f && currentAngle <= 5.0f) 
                 {
-                    Debug.Log("You Win!");
+                    GameManager.Instance.SetWinState(3, true);
                     //Insert Winning Code
                 }
                 else
                 {
-                    Debug.Log("Possesid");
+                    GameManager.Instance.SetWinState(3, false);
                     //Insert Losing Code
                 }
                 clockText.gameObject.SetActive(false);
