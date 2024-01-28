@@ -53,8 +53,9 @@ public class FoodGameManager : MonoBehaviour
             valAssigned = valAssigned - 4;
             myTask1 = true;
 
+            referenceFood.GetComponent<ConsumeLabels>().TriggerAnim();
             //Wait for the animation to end
-            referenceFood.SetActive(false);
+            //referenceFood.SetActive(false);
         }
 
         if (taskAssigned == 2)
@@ -63,9 +64,9 @@ public class FoodGameManager : MonoBehaviour
             //valAssigned = valAssigned;
             myTask2 = true;
 
-
+            referenceFood.GetComponent<ConsumeLabels>().TriggerAnim();
             //Wait for the animation to end
-            referenceFood.SetActive(false);
+            //referenceFood.SetActive(false);
         }
 
         valAssigned = 0;

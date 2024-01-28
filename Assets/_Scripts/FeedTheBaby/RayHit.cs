@@ -77,18 +77,22 @@ public class RayHit : MonoBehaviour
     private void ObjectRelease()
     {
         
-     
         //Check if its task are completed
         FoodGameManager manager = m_MixingObject.GetComponent<FoodGameManager>();
-        //if (manager.IsValidIngredient())
-        //{
-        //    Debug.Log("Accepted Ingredient");
-        //}
+        if (manager.IsValidIngredient()) {
+            Debug.Log("Accepted Ingredient");
+        }
+
+        else
+        {
+            //Reset Position
+            StartCoroutine(LerpReturn(m_HoldObject.transform.position, 0.2f));
+        }
         manager.ResetTrigger();
-       
-        //Reset Position
-        StartCoroutine(LerpReturn(m_HoldObject.transform.position, 0.2f));
     }
+        
+       
+        
 
     IEnumerator LerpReturn(Vector3 startPos, float time)
     {
