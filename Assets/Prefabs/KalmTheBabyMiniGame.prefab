@@ -5578,6 +5578,10 @@ MonoBehaviour:
   - Besty
   - High Five
   - Yipee
+  - Family
+  - Happy Family
+  - Jingliu
+  - Keqing
   negative:
   - Bad
   - Fuck you
@@ -5660,6 +5664,7 @@ MonoBehaviour:
   - My Candy
   - Why are you here
   - Stupid
+  - You Suck
   tutorialText: {fileID: 396603952214636820}
 --- !u!82 &3379863966689488092
 AudioSource:

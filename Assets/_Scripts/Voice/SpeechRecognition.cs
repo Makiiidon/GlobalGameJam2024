@@ -108,12 +108,15 @@ public class SpeechRecognition : MonoBehaviour
             }
         }
 
-        if (happinessMeter < -3)
-            happinessMeter = -3;
+        if (happinessMeter < -4)
+            happinessMeter = -4;
 
         if (happinessMeter > 3)
+        {
             happinessMeter = 3;
-        
+            Debug.Log("Win");
+        }
+
 
         if (happinessMeter >= 3)
             renderer.sprite = elatedFace;
@@ -159,7 +162,7 @@ public class SpeechRecognition : MonoBehaviour
                 // increase sad counter
                 happinessMeter--;
                 outOfRangeTimer = 0.0f;
-                if(happinessMeter < 2)
+                if(happinessMeter < -3)
                     gameOverCtr++;
             }
         }
@@ -171,9 +174,10 @@ public class SpeechRecognition : MonoBehaviour
             // Additional logic when volume is within range can be added here
         }
 
-        if (gameOverCtr >= 2)
+        if (gameOverCtr >= 3)
         {
             // Add Game Over
+            Debug.Log("You Lose");
         }
     }
 
@@ -192,6 +196,8 @@ public class SpeechRecognition : MonoBehaviour
     {
         //Debug.Log("Bad");
         happinessMeter--;
+        if (happinessMeter < -3)
+            gameOverCtr++;
         particleDown.Play();
     }
 
