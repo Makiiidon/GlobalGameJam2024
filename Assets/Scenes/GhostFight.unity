@@ -614,9 +614,10 @@ MonoBehaviour:
   rightPunchSprite: {fileID: 21300000, guid: dada0d5b6579c8f459cd12e3235e0ffa, type: 3}
   leftIndicator: {fileID: 1692425049}
   rightIndicator: {fileID: 441611216}
+  attackTicks: 0
   ATTACK_INTERVAL: 2
-  minAttackInterval: 3
-  maxAttackInterval: 4
+  minAttackInterval: 1.8
+  maxAttackInterval: 2.4
   playerPunchDelay: 0.5
 --- !u!1 &721140894
 GameObject:
@@ -768,6 +769,7 @@ GameObject:
   - component: {fileID: 772638057}
   - component: {fileID: 772638056}
   - component: {fileID: 772638061}
+  - component: {fileID: 772638062}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -788,6 +790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priestTimerText: {fileID: 55972142}
+  isGhostDead: 0
 --- !u!114 &772638057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,6 +869,7 @@ RectTransform:
   - {fileID: 55972144}
   - {fileID: 642964240}
   - {fileID: 721140895}
+  - {fileID: 2067063463}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -885,6 +889,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2537fbe3be0684891138cec4f20b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+--- !u!95 &772638062
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772638055}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a647ecbc8e9af0449ad297139a3c4116, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1101905326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,18 +1101,22 @@ MonoBehaviour:
   maxStamina: 2
   playerPunchDelay: 0.5
   dodgeDelay: 1
+  enemyManager: {fileID: 690846354}
+  isCooldown: 0
+  cooldownDuration: 2.8
   spriteRenderer: {fileID: 1614849515}
   baseFistSprite: {fileID: 21300000, guid: 4ec94bd7679bbf5498a0c02219f167c2, type: 3}
   leftPunchSprite: {fileID: 21300000, guid: 0b46a8396fa19e745b07814226bb5a46, type: 3}
   rightPunchSprite: {fileID: 21300000, guid: 5c023ce50c3fa3047b50ad8d8aae2606, type: 3}
   dodgeSprite: {fileID: 21300000, guid: 2296cd5c12594cf479221114a5a2fcbe, type: 3}
-  isPunchingLeft: 0
-  isPunchingRight: 0
+  isPunchingLeft: 1
+  didPunch: 0
   isDodging: 0
   dodgedLeft: 1
   dodgeTicks: 0
-  DODGE_REGENERATION_INTERVAL: 3
+  DODGE_REGENERATION_INTERVAL: 2
   canRegen: 0
+  playerUIManager: {fileID: 0}
 --- !u!1 &1614849513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,6 +1285,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2067063462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2067063463}
+  - component: {fileID: 2067063465}
+  - component: {fileID: 2067063464}
+  m_Layer: 5
+  m_Name: BlackFade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2067063463
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067063462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 772638060}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2067063464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067063462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2067063465
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2067063462}
+  m_CullTransparentMesh: 1
 --- !u!1 &2118701756
 GameObject:
   m_ObjectHideFlags: 0

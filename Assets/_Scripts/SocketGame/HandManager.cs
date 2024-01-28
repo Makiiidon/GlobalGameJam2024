@@ -21,10 +21,13 @@ public class HandManager : MonoBehaviour
     [SerializeField] private bool isGameOver = false;
     [SerializeField] private bool isInstructionFinished = false;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnEnable()
     {
-        rb = GetComponent<Rigidbody2D>();
+        if (rb == null )
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
     }
 
     // Update is called once per frame

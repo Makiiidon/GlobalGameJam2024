@@ -9,7 +9,7 @@ public class GhostUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI priestTimerText;
     private float ticks = 0.0f;
     private float maxTime = 60.0f;
-    
+    [SerializeField] private bool isGhostDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,13 @@ public class GhostUIManager : MonoBehaviour
         }
         else
         {
+            isGhostDead = true;
             Debug.Log("Priest has arrived");
         }     
+    }
+
+    public bool IsGhostDead()
+    {
+        return isGhostDead;
     }
 }

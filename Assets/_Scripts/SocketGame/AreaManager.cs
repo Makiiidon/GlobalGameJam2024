@@ -10,10 +10,13 @@ public class AreaManager : MonoBehaviour
     [SerializeField] private float swerveForce;
     [SerializeField] private HandManager handManager;
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void OnEnable()
     {
-        rb = handPrefab.GetComponent<Rigidbody2D>();
+        if(rb == null)
+        {
+            rb = handPrefab.GetComponent<Rigidbody2D>();
+        }
     }
 
     // Update is called once per frame

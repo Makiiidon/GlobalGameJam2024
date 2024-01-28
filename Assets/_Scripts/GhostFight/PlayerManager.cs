@@ -14,7 +14,12 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private int maxStamina;
     [SerializeField] private float playerPunchDelay;
     [SerializeField] private float dodgeDelay;
+    [SerializeField] private EnemyManager enemyManager;
 
+    // Cooldown
+    [SerializeField] private bool isCooldown = false;
+    private float cooldownTicks = 0.0f;
+    [SerializeField] private float cooldownDuration;
 
     // Sprites
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -24,8 +29,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Sprite dodgeSprite;
 
     // Punch 
-    [SerializeField] private bool isPunchingLeft = false;
-    [SerializeField] private bool isPunchingRight = false;
+    [SerializeField] private bool isPunchingLeft = true;
+    [SerializeField] private bool didPunch = false;
 
     // Dodge
     [SerializeField] private bool isDodging = false;
@@ -34,12 +39,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float DODGE_REGENERATION_INTERVAL = 3.0f;
     [SerializeField] private bool canRegen = false;
 
+    // Game States
+    [SerializeField] private PlayerUIManager playerUIManager;
 
-
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         currentHealth = maxHealth;
         currentStamina = maxStamina;
@@ -48,55 +51,72 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateText();
+        if (!CheckIfDead())
+        {
+            UpdateText();
 
-       
-        if(Input.GetMouseButtonDown(0) && !isPunchingRight && !isDodging) // Left Punch
-        {
-            isPunchingLeft = true;
-            StartCoroutine(LeftPunch());
-        }
-        else if (Input.GetMouseButtonDown(1) && !isPunchingLeft && !isDodging) // Right Punch
-        {
-            isPunchingRight = true;
-            StartCoroutine(RightPunch());
-        }
-        else if (Input.GetKeyDown(KeyCode.A) && !isPunchingLeft && !isPunchingRight && currentStamina >= 1)
-        {
-            currentStamina -= 1;
-            isDodging = true;
-            dodgedLeft = true;
-            StartCoroutine(LeftDodge());
-        }
-        else if (Input.GetKeyDown(KeyCode.D) && !isPunchingLeft && !isPunchingRight && currentStamina >= 1)
-        {
-            currentStamina -= 1;
-            isDodging = true;
-            dodgedLeft = false;
-            StartCoroutine(RightDodge());
-        }
-
-        // Stamina Regen
-        if (currentStamina == 0)
-        {
-            canRegen = true;
-        }
-
-
-        if(canRegen) 
-        {
-            dodgeTicks += Time.deltaTime;
-            if (dodgeTicks >= DODGE_REGENERATION_INTERVAL)
+            if (isCooldown)
             {
-                dodgeTicks = 0.0f;
-                if (currentStamina < maxStamina)
-                    currentStamina++;
-                else
-                    canRegen = false;
+                cooldownTicks += Time.deltaTime;
+                if (cooldownTicks > cooldownDuration)
+                {
+                    cooldownTicks = 0.0f;
+                    isCooldown = false;
+                }
+            }
+
+            if (Input.GetMouseButtonDown(0) && !isDodging && !isCooldown) // Left Punch
+            {
+                didPunch = true;
+                if (isPunchingLeft)
+                {
+                    StartCoroutine(LeftPunch());
+                }
+                else if (!isPunchingLeft)
+                {
+                    StartCoroutine(RightPunch());
+                }
+                isCooldown = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.A) && !didPunch && currentStamina >= 1)
+            {
+                currentStamina -= 1;
+                isDodging = true;
+                dodgedLeft = true;
+                StartCoroutine(LeftDodge());
+            }
+            else if (Input.GetKeyDown(KeyCode.D) && !didPunch && currentStamina >= 1)
+            {
+                currentStamina -= 1;
+                isDodging = true;
+                dodgedLeft = false;
+                StartCoroutine(RightDodge());
+            }
+
+            // Stamina Regen
+            if (currentStamina == 0)
+            {
+                canRegen = true;
+            }
+
+
+            if (canRegen)
+            {
+                dodgeTicks += Time.deltaTime;
+                if (dodgeTicks >= DODGE_REGENERATION_INTERVAL)
+                {
+                    dodgeTicks = 0.0f;
+                    if (currentStamina < maxStamina)
+                        currentStamina++;
+                    else
+                        canRegen = false;
+                }
             }
         }
-      
-
+        else
+        {
+            playerUIManager.TriggerFadeIn();
+        }
     }
 
     void UpdateText()
@@ -108,17 +128,23 @@ public class PlayerManager : MonoBehaviour
     IEnumerator LeftPunch()
     {
         spriteRenderer.sprite = leftPunchSprite;
+        enemyManager.SetHitSprite();
         yield return new WaitForSeconds(playerPunchDelay);
+        enemyManager.SetBaseSprite();
         spriteRenderer.sprite = baseFistSprite;
-        isPunchingLeft = false;
+        isPunchingLeft = !isPunchingLeft;
+        didPunch = false;
     }
 
     IEnumerator RightPunch()
     {
         spriteRenderer.sprite = rightPunchSprite;
+        enemyManager.SetFlippedHitSprite();
         yield return new WaitForSeconds(playerPunchDelay);
+        enemyManager.SetBaseSprite();
         spriteRenderer.sprite = baseFistSprite;
-        isPunchingRight = false;
+        isPunchingLeft = !isPunchingLeft;
+        didPunch = false;
     }
 
     IEnumerator LeftDodge()
@@ -137,6 +163,14 @@ public class PlayerManager : MonoBehaviour
         spriteRenderer.sprite = baseFistSprite;
         isDodging = false;
         spriteRenderer.flipX = false;
+    }
+
+    public bool CheckIfDead()
+    {
+        if (currentHealth <= 0)
+            return true;
+        else
+            return false;  
     }
 
     public void SubtractHealth()
@@ -158,5 +192,13 @@ public class PlayerManager : MonoBehaviour
         return dodgedLeft;
     }
 
+    public bool GetIsPlayerPunching()
+    {
+        if (didPunch)
+            return true;
+
+        else
+            return false;
+    }
 }
 
