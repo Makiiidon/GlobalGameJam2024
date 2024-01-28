@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
             case 6:
                 {
                     win6 = isWin;
+                    games[games.Count - 1].SetActive(true) ;
                     // Add cutscene
                     break;
                 }
