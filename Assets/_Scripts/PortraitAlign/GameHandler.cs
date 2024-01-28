@@ -25,7 +25,7 @@ public class GameHandler : MonoBehaviour
     [SerializeField] float initialAngle = 0.0f;
 
     [SerializeField] float elapsedTime = 0.0f;
-    float totalTime = 60.0f;
+    float totalTime = 30.0f;
     [SerializeField] TextMeshProUGUI clockText;
     [SerializeField] GameObject Panel;
     bool firstTime = true;
