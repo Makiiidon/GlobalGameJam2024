@@ -130,6 +130,7 @@ public class FoodGameManager : MonoBehaviour
         {
             //Send the information and proceed to next minigame
             gameOutcome = 1;
+            GameManager.Instance.SetWinState(1, true);
             return;
         }
 
@@ -140,6 +141,7 @@ public class FoodGameManager : MonoBehaviour
             {
                 //Gigachad
                 gameOutcome = 2;
+                GameManager.Instance.SetWinState(1, false);
                 return;
             }
 
@@ -147,8 +149,11 @@ public class FoodGameManager : MonoBehaviour
             {
                 //Default Lose
                 gameOutcome = 3;
+                GameManager.Instance.SetWinState(1, false);
                 return;
             }
+
+           
         }
     }
 

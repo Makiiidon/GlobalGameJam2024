@@ -48,7 +48,7 @@ public class RayHit : MonoBehaviour
             //Drop Function
            
             ObjectRelease();
-            //isHold = false;
+            isHold = false;
         }
     }
 
@@ -86,7 +86,10 @@ public class RayHit : MonoBehaviour
         else
         {
             //Reset Position
-            StartCoroutine(LerpReturn(m_HoldObject.transform.position, 0.2f));
+            if (m_HoldObject != null)
+            {
+                StartCoroutine(LerpReturn(m_HoldObject.transform.position, 0.2f));
+            }
         }
         manager.ResetTrigger();
     }
