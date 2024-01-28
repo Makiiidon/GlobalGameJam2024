@@ -32,6 +32,7 @@ public class AudioManager : MonoBehaviour
 
         bgm = this.gameObject.AddComponent<AudioSource>();
         PlayBGM(bgmInitMusic);
+        bgm.loop = true;
     }
 
     // Update is called once per frame

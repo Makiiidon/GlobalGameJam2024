@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] List<GameObject> games = new List<GameObject>();
+    [SerializeField] List<GameObject> frames = new List<GameObject>();
     [SerializeField] GameObject mainCamera;
+    [SerializeField] GameObject canvas;
+    [SerializeField] GameObject btn;
+    [SerializeField] List<string> texts = new List<string>();
+    [SerializeField] TMP_Text word;
 
     public static GameManager Instance;
-    int activeLevel = 0;
+    [SerializeField] int activeLevel = 0;
 
     bool win1 = false;
     bool win2 = false;
@@ -16,6 +22,9 @@ public class GameManager : MonoBehaviour
     bool win4 = false;
     bool win5 = false;
     bool win6 = false;
+
+    bool fadeText = false;
+    int wordCtr = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +33,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
         activeLevel = 1;
+        //StartTransition(1);
         SetActiveLevel(activeLevel);
     }
 
@@ -40,8 +50,16 @@ public class GameManager : MonoBehaviour
         {
             game.SetActive(false);
         }
+        StartTransition(activeLevel - 1);
         games[activeLevel - 1].SetActive(true);
 
+    }
+
+    public void IncrementLevel()
+    {
+        activeLevel++;
+        
+        SetActiveLevel(activeLevel);
     }
 
     public void SetWinState(int level, bool isWin)
@@ -90,6 +108,46 @@ public class GameManager : MonoBehaviour
 
                 }
         }
+        games[activeLevel-1].SetActive(false);
         activeLevel++;
+        StartTransition(activeLevel);
     }
+
+    void StartTransition(int num)
+    {
+        word.text = texts[wordCtr];
+        if (activeLevel == 3 ||
+            activeLevel == 5 ||
+            activeLevel == 7 ||
+            activeLevel == 9 ||
+            activeLevel == 11 
+            )
+        {
+            if (activeLevel == 3 || activeLevel == 9)
+                mainCamera.SetActive(false);
+
+            if (activeLevel == 9)
+            {
+                canvas.SetActive(false);
+            }
+
+            foreach (GameObject frame in frames)
+            {
+                frame.SetActive(false);
+            }
+
+            btn.SetActive(false);
+            word.gameObject.SetActive(false);
+            return;
+
+        }
+        //frames[num].SetActive(true);
+        btn.SetActive(true);
+        word.gameObject.SetActive(true);
+        mainCamera.SetActive(true);
+        canvas.SetActive(true);
+
+        wordCtr++;
+    }
+
 }

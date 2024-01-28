@@ -116,7 +116,11 @@ public class SpeechRecognition : MonoBehaviour
         }
 
         if (happinessMeter < -4)
+        {
+            GameManager.Instance.SetWinState(5, false);
             happinessMeter = -4;
+
+        }
 
         if (happinessMeter > 3)
         {
