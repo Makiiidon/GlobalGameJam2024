@@ -222,18 +222,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2778508470666374197, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
-      propertyPath: hitSFX1
-      value: 
-      objectReference: {fileID: 8300000, guid: 146b383fc3a20704fa353f7931e6fc73, type: 3}
-    - target: {fileID: 2778508470666374197, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
-      propertyPath: hitSFX2
-      value: 
-      objectReference: {fileID: 8300000, guid: 47d10470731eb6f418e9058391c7eb2b, type: 3}
-    - target: {fileID: 2778508470666374197, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
-      propertyPath: hitSFX3
-      value: 
-      objectReference: {fileID: 8300000, guid: bb9cdb5ef8b07f947b9a966876113751, type: 3}
     - target: {fileID: 8842028039552562676, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
       propertyPath: m_Name
       value: GhostFight

@@ -103,6 +103,7 @@ public class SocketManager : MonoBehaviour
         animator.SetTrigger("didExplode");
         AudioManager.Instance.PlaySFX(explosionSFX);
         GameManager.Instance.SetWinState(2, false);
+        yield return new WaitForSeconds(3.0f);
     }
 
 

@@ -143,6 +143,7 @@ public class PlayerManager : MonoBehaviour
     IEnumerator LeftPunch()
     {
         spriteRenderer.sprite = leftPunchSprite;
+
         enemyManager.SetHitSprite();
         yield return new WaitForSeconds(playerPunchDelay);
         enemyManager.SetBaseSprite();
