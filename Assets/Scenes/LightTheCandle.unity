@@ -131,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 181098426145301554, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
-      propertyPath: micSensitivity
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 4705749131955325868, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -178,10 +174,6 @@ PrefabInstance:
     - target: {fileID: 4963200752341809548, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
       propertyPath: m_Name
       value: LightTheCandle
-      objectReference: {fileID: 0}
-    - target: {fileID: 8855639987415517742, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
-      propertyPath: m_SoundMinThreshold
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
