@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         {
             game.SetActive(false);
         }
-        StartTransition(activeLevel - 1);
+        StartTransition();
         games[activeLevel - 1].SetActive(true);
 
     }
@@ -110,17 +110,17 @@ public class GameManager : MonoBehaviour
         }
         games[activeLevel-1].SetActive(false);
         activeLevel++;
-        StartTransition(activeLevel);
+        StartTransition();
     }
 
-    void StartTransition(int num)
+    void StartTransition()
     {
-        word.text = texts[wordCtr];
         if (activeLevel == 3 ||
             activeLevel == 5 ||
             activeLevel == 7 ||
             activeLevel == 9 ||
-            activeLevel == 11 
+            activeLevel == 11 ||
+            activeLevel == 13 
             )
         {
             if (activeLevel == 3 || activeLevel == 9)
@@ -141,6 +141,9 @@ public class GameManager : MonoBehaviour
             return;
 
         }
+        
+        word.text = texts[wordCtr];
+
         //frames[num].SetActive(true);
         btn.SetActive(true);
         word.gameObject.SetActive(true);

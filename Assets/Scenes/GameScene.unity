@@ -2212,6 +2212,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FinalPortrait
       objectReference: {fileID: 0}
+    - target: {fileID: 2886027343991851559, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5325553570580287152, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.173298
@@ -2840,6 +2844,7 @@ MonoBehaviour:
     be the last of my nights\u2026 My final words to you-  Square Up Bruh, TIME TO
     FIGHT "
   word: {fileID: 1368607162}
+  activeLevel: 0
 --- !u!4 &1704295468
 Transform:
   m_ObjectHideFlags: 0
