@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class HandManager : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class HandManager : MonoBehaviour
 
     [SerializeField] private bool isGameOver = false;
     [SerializeField] private bool isInstructionFinished = false;
+
+    // Flag
+    [SerializeField] private bool scrolled = false;
 
 
     private void OnEnable()
@@ -62,13 +66,22 @@ public class HandManager : MonoBehaviour
                 // Bring back hand using scroll wheel down
                 if (Input.mouseScrollDelta.y < 0)
                 {
-                    rb.AddForce(new Vector2(0, -1.0f * pullForce * Time.deltaTime));
+                    scrolled = true;               
                 }
             }
             else
             {
                 rb.velocity = Vector2.zero;
             }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(scrolled)
+        {
+            rb.AddForce(new Vector2(0, -1.0f * pullForce * Time.deltaTime));
+            scrolled = false;
         }
     }
 

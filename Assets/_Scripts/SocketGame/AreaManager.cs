@@ -10,6 +10,9 @@ public class AreaManager : MonoBehaviour
     [SerializeField] private float swerveForce;
     [SerializeField] private HandManager handManager;
 
+    // Flags
+    [SerializeField] private bool clicked = false;
+
 
     private void OnEnable()
     {
@@ -36,8 +39,8 @@ public class AreaManager : MonoBehaviour
                     if (Input.GetMouseButtonDown(0))
                     {
                         //Debug.Log("Left Area Click");
-                        rb.AddForce(new Vector2(-swerveForce * Time.deltaTime, 0));
-
+                        //rb.AddForce(new Vector2(-swerveForce * Time.deltaTime, 0));
+                        clicked = true;
                     }
                 }
                 else
@@ -45,9 +48,30 @@ public class AreaManager : MonoBehaviour
                     if (Input.GetMouseButtonDown(0))
                     {
                         //Debug.Log("Right Area Click");
-                        rb.AddForce(new Vector2(swerveForce * Time.deltaTime, 0));
+                       // rb.AddForce(new Vector2(swerveForce * Time.deltaTime, 0));
+                        clicked = true;
                     }
                 }
+            }
+        }
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (clicked)
+        {
+            if (isLeft)
+            {
+                //Debug.Log("Left Area Click");
+                rb.AddForce(new Vector2(-swerveForce * Time.deltaTime, 0));
+                clicked = false;
+            }
+            else 
+            {
+                //Debug.Log("Right Area Click");
+                rb.AddForce(new Vector2(swerveForce * Time.deltaTime, 0));
+                clicked = false;
             }
         }
     }
