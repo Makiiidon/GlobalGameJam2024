@@ -11,12 +11,17 @@ public class GameHandler : MonoBehaviour
     [SerializeField] Transform Painting;
     [SerializeField] Transform Hands;
     [SerializeField] GameObject Sparkles;
+    [SerializeField] private AudioClip hmm;
+    [SerializeField] private AudioClip creak;
+    [SerializeField] private AudioClip littlemore;
+    [SerializeField] private AudioClip likethis;
 
     bool hasStarted = true;
 
     [SerializeField] float paintingStrength;
     [SerializeField] float armStrength;
     float timer = 4.0f;
+    float audioElapsed = 0.0f;
     [SerializeField] float initialAngle = 0.0f;
 
     [SerializeField] float elapsedTime = 0.0f;
@@ -47,11 +52,12 @@ public class GameHandler : MonoBehaviour
                 {
                     
                     paintingStrength = Random.Range(-10.0f, 10.0f);
+                    AudioManager.Instance.PlaySFX(creak);
                     elapsedTime = 0.0f;
                     if (firstTime)
                     {
                         firstTime = false;
-                        timer = 3.0f;
+                        timer = 5.0f;
                     }
                 }
                 if (firstTime)
@@ -69,7 +75,6 @@ public class GameHandler : MonoBehaviour
                 }
                 if (!firstTime)
                 {
-                    Debug.Log("Arm Strength: " + armStrength + " Painting Strength: " + paintingStrength);
                     if (Mathf.Abs(armStrength) > Mathf.Abs(paintingStrength))
                     {
 
@@ -105,8 +110,28 @@ public class GameHandler : MonoBehaviour
                     }
                     clockText.SetText(mins + ":" + secs);
                 }
-               
-
+                if (audioElapsed > 10.0f)
+                {
+                    int rand = Random.Range(1, 4);
+                    Debug.Log(rand);
+                    switch (rand)
+                    {
+                        case 1:
+                            AudioManager.Instance.PlaySFX(hmm);
+                            break;
+                        case 2:
+                            AudioManager.Instance.PlaySFX(littlemore);
+                            break;
+                        case 3:
+                            AudioManager.Instance.PlaySFX(likethis);
+                            break;
+                        case 4:
+                            AudioManager.Instance.PlaySFX(likethis);
+                            break;
+                    }
+                    audioElapsed = 0.0f;
+                }
+                audioElapsed += Time.deltaTime;
                 elapsedTime += Time.deltaTime;
                 float currentAngle = Painting.transform.rotation.eulerAngles.z;
                 if (currentAngle > 180)
@@ -114,16 +139,13 @@ public class GameHandler : MonoBehaviour
                     currentAngle -= 360.0f;
 
                 }
-                //Debug.Log("Current Angle: " + currentAngle);
 
                 if (currentAngle >= -5.0f && currentAngle <= 5.0f)
                 {
                     Sparkles.SetActive(true);
-                    //Debug.Log("Within of Range");
                 }
                 else
                 {
-                   // Debug.Log("Outside of Range");
                     Sparkles.SetActive(false);
                 }
             }
@@ -138,12 +160,10 @@ public class GameHandler : MonoBehaviour
                 if (currentAngle >= -5.0f && currentAngle <= 5.0f) 
                 {
                     GameManager.Instance.SetWinState(3, true);
-                    //Insert Winning Code
                 }
                 else
                 {
                     GameManager.Instance.SetWinState(3, false);
-                    //Insert Losing Code
                 }
                 clockText.gameObject.SetActive(false);
             }

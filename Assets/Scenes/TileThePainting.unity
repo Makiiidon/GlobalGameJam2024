@@ -260,6 +260,57 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &1266697828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1266697830}
+  - component: {fileID: 1266697829}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1266697829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266697828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d7f8413bdcaa84cbede730d0d520b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vox: {fileID: 0}
+  sfx: {fileID: 0}
+  bgm: {fileID: 0}
+  bgmInitMusic: {fileID: 0}
+  voxVol: 1
+  sfxVol: 1
+  bgmVol: 1
+--- !u!4 &1266697830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266697828}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 841.8258, y: 497.1371, z: 1.2740332}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1487430956
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +387,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 720156580202037628, guid: b91598d32b510bb4fae29e92f5629e8f, type: 3}
+      propertyPath: hmm
+      value: 
+      objectReference: {fileID: 8300000, guid: d0cfbd51142bca843846108d6b0df3ec, type: 3}
+    - target: {fileID: 720156580202037628, guid: b91598d32b510bb4fae29e92f5629e8f, type: 3}
+      propertyPath: creak
+      value: 
+      objectReference: {fileID: 8300000, guid: b72d36c1c9f9ddc47a35279754503f4b, type: 3}
+    - target: {fileID: 720156580202037628, guid: b91598d32b510bb4fae29e92f5629e8f, type: 3}
+      propertyPath: likethis
+      value: 
+      objectReference: {fileID: 8300000, guid: 9cc83e851a272d84891182c07e11edfe, type: 3}
+    - target: {fileID: 720156580202037628, guid: b91598d32b510bb4fae29e92f5629e8f, type: 3}
+      propertyPath: littlemore
+      value: 
+      objectReference: {fileID: 8300000, guid: e28ab07d341051f4286bbb7c08cfcc8e, type: 3}
     - target: {fileID: 5656649920275660709, guid: b91598d32b510bb4fae29e92f5629e8f, type: 3}
       propertyPath: m_Name
       value: PortraitAlignMinigame
@@ -392,3 +459,4 @@ SceneRoots:
   - {fileID: 1487430959}
   - {fileID: 900351367}
   - {fileID: 307371937854671534}
+  - {fileID: 1266697830}
