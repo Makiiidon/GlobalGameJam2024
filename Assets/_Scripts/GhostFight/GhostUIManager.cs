@@ -7,9 +7,11 @@ public class GhostUIManager : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI priestTimerText;
-    private float ticks = 0.0f;
+    [SerializeField] private float ticks = 0.0f;
     private float maxTime = 60.0f;
     [SerializeField] private bool isGhostDead = false;
+    [SerializeField] private PlayerManager playerManager;
+    [SerializeField] private PlayerUIManager playerUIManager;
 
     // Start is called before the first frame update
     void Start()
@@ -20,16 +22,21 @@ public class GhostUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ticks < maxTime)
+        if(playerUIManager.GetIsInstructionsFinished())
         {
-            ticks += Time.deltaTime;
-            priestTimerText.text = ticks.ToString();
+            if (ticks < maxTime)
+            {
+                ticks += Time.deltaTime;
+                priestTimerText.text = ticks.ToString();
+            }
+            else
+            {
+                playerManager.SetCanBeDamaged(false);
+                isGhostDead = true;
+                Debug.Log("Priest has arrived");
+                GameManager.Instance.SetWinState(6, true);
+            }
         }
-        else
-        {
-            isGhostDead = true;
-            Debug.Log("Priest has arrived");
-        }     
     }
 
     public bool IsGhostDead()

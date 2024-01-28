@@ -20,53 +20,65 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float maxAttackInterval = 3.0f;
     [SerializeField] private float playerPunchDelay;
 
+    // Animator 
+    [SerializeField] private Animator animator;
+    [SerializeField] private GhostUIManager ghostUIManager;
+    [SerializeField] private PlayerUIManager playerUIManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
-     
+        animator.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!playerManager.CheckIfDead())
+        if (playerUIManager.GetIsInstructionsFinished())
         {
-            if (playerManager.GetIsPlayerPunching())
+            if (ghostUIManager.IsGhostDead())
             {
-                attackTicks = 0.0f;
-                ATTACK_INTERVAL = maxAttackInterval;
+                animator.enabled = true;
+                animator.SetTrigger("didGhostDie");
             }
-            else if (!playerManager.GetIsPlayerPunching())
+
+            if (!playerManager.CheckIfDead() && !ghostUIManager.IsGhostDead())
             {
-                attackTicks += Time.deltaTime;
-                if (attackTicks >= ATTACK_INTERVAL && !playerManager.GetIsPlayerPunching())
+                if (playerManager.GetIsPlayerPunching())
                 {
                     attackTicks = 0.0f;
-
-                    if (CheckIfPlayerPunching())  // Exit if player punching
-                        return;
-
-                    int chosenSide = Random.Range(1, 3); // If 1, Left, If 2, Right
-
-                    if (CheckIfPlayerPunching())  // Exit if player punching
-                        return;
-
-                    if (chosenSide == 1 && !playerManager.GetIsPlayerPunching())
+                    ATTACK_INTERVAL = maxAttackInterval;
+                }
+                else if (!playerManager.GetIsPlayerPunching())
+                {
+                    attackTicks += Time.deltaTime;
+                    if (attackTicks >= ATTACK_INTERVAL && !playerManager.GetIsPlayerPunching())
                     {
-                        StartCoroutine(LeftPunch());
-                    }
-                    else if (chosenSide == 2 && !playerManager.GetIsPlayerPunching())
-                    {
-                        StartCoroutine(RightPunch());
-                    }
+                        attackTicks = 0.0f;
 
-                    ATTACK_INTERVAL = Random.Range(minAttackInterval, maxAttackInterval);
+                        if (CheckIfPlayerPunching())  // Exit if player punching
+                            return;
+
+                        int chosenSide = Random.Range(1, 3); // If 1, Left, If 2, Right
+
+                        if (CheckIfPlayerPunching())  // Exit if player punching
+                            return;
+
+                        if (chosenSide == 1 && !playerManager.GetIsPlayerPunching())
+                        {
+                            StartCoroutine(LeftPunch());
+                        }
+                        else if (chosenSide == 2 && !playerManager.GetIsPlayerPunching())
+                        {
+                            StartCoroutine(RightPunch());
+                        }
+
+                        ATTACK_INTERVAL = Random.Range(minAttackInterval, maxAttackInterval);
+                    }
                 }
             }
         }
-
-
     }
 
     IEnumerator LeftPunch()

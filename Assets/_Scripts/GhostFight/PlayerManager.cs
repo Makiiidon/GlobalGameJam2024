@@ -41,6 +41,9 @@ public class PlayerManager : MonoBehaviour
 
     // Game States
     [SerializeField] private PlayerUIManager playerUIManager;
+    [SerializeField] private GhostUIManager ghostUIManager;
+
+    [SerializeField] private bool canBeDamaged = true;
 
     private void OnEnable()
     {
@@ -51,72 +54,75 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!CheckIfDead())
+        if(playerUIManager.GetIsInstructionsFinished())
         {
             UpdateText();
 
-            if (isCooldown)
+            if (!CheckIfDead())
             {
-                cooldownTicks += Time.deltaTime;
-                if (cooldownTicks > cooldownDuration)
+                if (isCooldown)
                 {
-                    cooldownTicks = 0.0f;
-                    isCooldown = false;
+                    cooldownTicks += Time.deltaTime;
+                    if (cooldownTicks > cooldownDuration)
+                    {
+                        cooldownTicks = 0.0f;
+                        isCooldown = false;
+                    }
+                }
+
+                if (Input.GetMouseButtonDown(0) && !isDodging && !isCooldown) // Left Punch
+                {
+                    didPunch = true;
+                    if (isPunchingLeft)
+                    {
+                        StartCoroutine(LeftPunch());
+                    }
+                    else if (!isPunchingLeft)
+                    {
+                        StartCoroutine(RightPunch());
+                    }
+                    isCooldown = true;
+                }
+                else if (Input.GetKeyDown(KeyCode.A) && !didPunch && currentStamina >= 1)
+                {
+                    currentStamina -= 1;
+                    isDodging = true;
+                    dodgedLeft = true;
+                    StartCoroutine(LeftDodge());
+                }
+                else if (Input.GetKeyDown(KeyCode.D) && !didPunch && currentStamina >= 1)
+                {
+                    currentStamina -= 1;
+                    isDodging = true;
+                    dodgedLeft = false;
+                    StartCoroutine(RightDodge());
+                }
+
+                // Stamina Regen
+                if (currentStamina == 0)
+                {
+                    canRegen = true;
+                }
+
+
+                if (canRegen)
+                {
+                    dodgeTicks += Time.deltaTime;
+                    if (dodgeTicks >= DODGE_REGENERATION_INTERVAL)
+                    {
+                        dodgeTicks = 0.0f;
+                        if (currentStamina < maxStamina)
+                            currentStamina++;
+                        else
+                            canRegen = false;
+                    }
                 }
             }
-
-            if (Input.GetMouseButtonDown(0) && !isDodging && !isCooldown) // Left Punch
+            else
             {
-                didPunch = true;
-                if (isPunchingLeft)
-                {
-                    StartCoroutine(LeftPunch());
-                }
-                else if (!isPunchingLeft)
-                {
-                    StartCoroutine(RightPunch());
-                }
-                isCooldown = true;
+                StartCoroutine(playerUIManager.TriggerFadeIn());
             }
-            else if (Input.GetKeyDown(KeyCode.A) && !didPunch && currentStamina >= 1)
-            {
-                currentStamina -= 1;
-                isDodging = true;
-                dodgedLeft = true;
-                StartCoroutine(LeftDodge());
-            }
-            else if (Input.GetKeyDown(KeyCode.D) && !didPunch && currentStamina >= 1)
-            {
-                currentStamina -= 1;
-                isDodging = true;
-                dodgedLeft = false;
-                StartCoroutine(RightDodge());
-            }
-
-            // Stamina Regen
-            if (currentStamina == 0)
-            {
-                canRegen = true;
-            }
-
-
-            if (canRegen)
-            {
-                dodgeTicks += Time.deltaTime;
-                if (dodgeTicks >= DODGE_REGENERATION_INTERVAL)
-                {
-                    dodgeTicks = 0.0f;
-                    if (currentStamina < maxStamina)
-                        currentStamina++;
-                    else
-                        canRegen = false;
-                }
-            }
-        }
-        else
-        {
-            playerUIManager.TriggerFadeIn();
-        }
+        }    
     }
 
     void UpdateText()
@@ -175,10 +181,14 @@ public class PlayerManager : MonoBehaviour
 
     public void SubtractHealth()
     {
-        currentHealth--;
-        if (currentHealth <= 0) 
+        if(canBeDamaged)
         {
-            Debug.Log("YOU LOSE");
+            currentHealth--;
+            if (currentHealth <= 0 && !ghostUIManager.IsGhostDead())
+            {
+                Debug.Log("YOU LOSE");
+                GameManager.Instance.SetWinState(6, false);
+            }
         }
     }
 
@@ -199,6 +209,11 @@ public class PlayerManager : MonoBehaviour
 
         else
             return false;
+    }
+
+    public void SetCanBeDamaged(bool flag)
+    {
+        canBeDamaged = flag;
     }
 }
 
