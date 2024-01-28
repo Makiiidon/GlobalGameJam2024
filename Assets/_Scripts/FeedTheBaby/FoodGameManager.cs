@@ -56,9 +56,8 @@ public class FoodGameManager : MonoBehaviour
 
         if (taskAssigned == 1)
         {
-            Debug.LogError("Ingredient 1");
+            
             milkVal = valAssigned - 4;
-            Debug.LogError(valAssigned);
             myTask1 = true;
 
             referenceFood.GetComponent<ConsumeLabels>().TriggerAnim();
@@ -71,10 +70,9 @@ public class FoodGameManager : MonoBehaviour
 
         if (taskAssigned == 2)
         {
-            Debug.LogError("Ingredient 2");
+           
             waterVal = valAssigned;
             myTask2 = true;
-            Debug.LogError(valAssigned);
             referenceFood.GetComponent<ConsumeLabels>().TriggerAnim();
             //Wait for the animation to end
             UpdateWallUI();
