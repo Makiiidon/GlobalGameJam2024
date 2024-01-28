@@ -72,7 +72,8 @@ public class SocketManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         endText2.SetActive(true);
         AudioManager.Instance.PlaySFX(pinsSFX);
-        yield return new WaitForSeconds(6.0f);
+        yield return new WaitForSeconds(3.5f);
+        GameManager.Instance.SetWinState(2, true);
     }
 
     IEnumerator RevealPlugAndElectricity()
@@ -101,8 +102,7 @@ public class SocketManager : MonoBehaviour
         Animator animator = electricity.GetComponent<Animator>();
         animator.SetTrigger("didExplode");
         AudioManager.Instance.PlaySFX(explosionSFX);
-
-
+        GameManager.Instance.SetWinState(2, false);
     }
 
 

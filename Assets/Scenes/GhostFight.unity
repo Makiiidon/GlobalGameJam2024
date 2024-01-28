@@ -123,6 +123,57 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1621413374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1621413376}
+  - component: {fileID: 1621413375}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1621413375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621413374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d7f8413bdcaa84cbede730d0d520b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vox: {fileID: 0}
+  sfx: {fileID: 0}
+  bgm: {fileID: 0}
+  bgmInitMusic: {fileID: 0}
+  voxVol: 1
+  sfxVol: 1
+  bgmVol: 1
+--- !u!4 &1621413376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621413374}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.4669073, y: -8.465851, z: -0.0078022517}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7231228357440873492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -171,6 +222,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2778508470666374197, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+      propertyPath: hitSFX1
+      value: 
+      objectReference: {fileID: 8300000, guid: 146b383fc3a20704fa353f7931e6fc73, type: 3}
+    - target: {fileID: 2778508470666374197, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+      propertyPath: hitSFX2
+      value: 
+      objectReference: {fileID: 8300000, guid: 47d10470731eb6f418e9058391c7eb2b, type: 3}
+    - target: {fileID: 2778508470666374197, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+      propertyPath: hitSFX3
+      value: 
+      objectReference: {fileID: 8300000, guid: bb9cdb5ef8b07f947b9a966876113751, type: 3}
     - target: {fileID: 8842028039552562676, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
       propertyPath: m_Name
       value: GhostFight
@@ -185,3 +248,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 7231228357440873492}
+  - {fileID: 1621413376}

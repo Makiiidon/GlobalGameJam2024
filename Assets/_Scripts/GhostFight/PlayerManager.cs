@@ -45,6 +45,15 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] private bool canBeDamaged = true;
 
+    // SFX
+    [SerializeField] private float hitTicks;
+    [SerializeField] private float hitInterval;
+    [SerializeField] private float maxHitInterval;
+    [SerializeField] private float minHitInterval;
+    [SerializeField] private AudioClip hitSFX1;
+    [SerializeField] private AudioClip hitSFX2;
+    [SerializeField] private AudioClip hitSFX3;
+
     private void OnEnable()
     {
         currentHealth = maxHealth;
@@ -214,6 +223,25 @@ public class PlayerManager : MonoBehaviour
     public void SetCanBeDamaged(bool flag)
     {
         canBeDamaged = flag;
+    }
+
+    public void PlayRandomHit()
+    {
+        hitTicks += Time.deltaTime;
+        if (hitTicks > hitInterval)
+        {
+            hitTicks = 0;
+
+            int chosen = Random.Range(1, 4);
+            if (chosen == 1)
+                AudioManager.Instance.PlaySFX(hitSFX1);
+            else if (chosen == 2)
+                AudioManager.Instance.PlaySFX(hitSFX2);
+            else if (chosen == 3)
+                AudioManager.Instance.PlaySFX(hitSFX3);
+
+            hitInterval = Random.Range(minHitInterval, maxHitInterval);
+        }
     }
 }
 

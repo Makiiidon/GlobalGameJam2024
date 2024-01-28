@@ -182,30 +182,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 165937309518415866, guid: 81d86d6844996bb44be986ca42a5af91, type: 3}
-      propertyPath: backSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 1d0bb9406f80d164eaac98b6079a777e, type: 3}
-    - target: {fileID: 165937309518415866, guid: 81d86d6844996bb44be986ca42a5af91, type: 3}
-      propertyPath: groansSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: c73b3f5575efc1442b019b05d70bcee0, type: 3}
-    - target: {fileID: 165937309518415866, guid: 81d86d6844996bb44be986ca42a5af91, type: 3}
-      propertyPath: maxSwerveForce
-      value: 20000
-      objectReference: {fileID: 0}
-    - target: {fileID: 165937309518415866, guid: 81d86d6844996bb44be986ca42a5af91, type: 3}
-      propertyPath: minSwerveForce
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 165937309518415866, guid: 81d86d6844996bb44be986ca42a5af91, type: 3}
-      propertyPath: maxGroanInterval
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 165937309518415866, guid: 81d86d6844996bb44be986ca42a5af91, type: 3}
-      propertyPath: minGroanInterval
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4229114507136157163, guid: 81d86d6844996bb44be986ca42a5af91, type: 3}
       propertyPath: m_Name
       value: SocketGamePrefab
@@ -250,18 +226,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7691297522340876764, guid: 81d86d6844996bb44be986ca42a5af91, type: 3}
-      propertyPath: ohSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: e40505b137d2b06499df7ee90503b5f6, type: 3}
-    - target: {fileID: 7691297522340876764, guid: 81d86d6844996bb44be986ca42a5af91, type: 3}
-      propertyPath: pinsSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: bdd9ec06150c735439a71394a444421a, type: 3}
-    - target: {fileID: 7691297522340876764, guid: 81d86d6844996bb44be986ca42a5af91, type: 3}
-      propertyPath: explosionSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: c0039c70572df5349ba27e12b7c80e46, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
