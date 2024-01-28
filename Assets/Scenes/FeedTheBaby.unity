@@ -230,6 +230,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 344611013719741641, guid: 7d50c2c601b84564f9072e47821b9a26, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1434335966, guid: d3e746e9d4e8560458124fceeb469f78, type: 3}
     - target: {fileID: 1811609324062735231, guid: 7d50c2c601b84564f9072e47821b9a26, type: 3}
       propertyPath: m_Name
       value: Scene
@@ -273,6 +277,10 @@ PrefabInstance:
     - target: {fileID: 6319440243814642436, guid: 7d50c2c601b84564f9072e47821b9a26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8890941750636680847, guid: 7d50c2c601b84564f9072e47821b9a26, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
