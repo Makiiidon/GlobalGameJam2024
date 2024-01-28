@@ -115,7 +115,7 @@ public class FoodGameManager : MonoBehaviour
     private bool IsCompleted()
     {
         if (myTask1 && myTask2) {
-            Debug.Log("Done Mixing");
+            //Debug.Log("Done Mixing");
             GetComponent<Animator>().SetInteger("Total Ingredients", 2);
             return true;
         }
