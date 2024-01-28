@@ -92,13 +92,17 @@ public class MixingColor : StateMachineBehaviour
         if (manager.RetrieveOutcome() == 1)
         {
             spriteRender.color = colorGreen;
-            Debug.Log("Good Bottle");
+            manager.PlayWin();
+           
+            //Debug.Log("Good Bottle");
         }
 
         else
         {
             spriteRender.color = colorRed;
-            Debug.Log("BAd Bottle");
+            manager.PlayLose();
+           
+            //Debug.Log("BAd Bottle");
         }
 
         elapsedTime = 0;

@@ -10,6 +10,15 @@ public class FoodGameManager : MonoBehaviour
     //UI
     [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
 
+    //Dialogue
+    [SerializeField] private AudioClip dialogue_1;
+    [SerializeField] private AudioClip dialogue_2;
+
+    //WIN Condition
+    [SerializeField] private AudioClip win_1;
+    [SerializeField] private AudioClip lose_1;
+
+
 
 
     [SerializeField] private bool isValidInputIngredient = false;
@@ -30,6 +39,11 @@ public class FoodGameManager : MonoBehaviour
 
     private int gameOutcome = 0;
 
+    //Time Interval
+    float cooldown = 3;
+    float elapsedTime = 0;
+    bool isNotFinished = true;
+
 
 
     private void OnEnable()
@@ -40,7 +54,20 @@ public class FoodGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        cooldown -= Time.deltaTime;
+        if(cooldown < 0 && isNotFinished)
+        {
+            cooldown = Random.Range(2, 4);
+            int choice = Random.Range(1, 5);
+            if(choice < 3) {
+                AudioManager.Instance.PlayVox(dialogue_2);
+            }
+           else
+            {
+                AudioManager.Instance.PlayVox(dialogue_1);
+            }
+
+        }
     }
 
     public bool IsValidIngredient()
@@ -117,6 +144,7 @@ public class FoodGameManager : MonoBehaviour
         if (myTask1 && myTask2) {
             //Debug.Log("Done Mixing");
             GetComponent<Animator>().SetInteger("Total Ingredients", 2);
+            isNotFinished = false;
             return true;
         }
 
@@ -131,6 +159,8 @@ public class FoodGameManager : MonoBehaviour
             //Send the information and proceed to next minigame
             gameOutcome = 1;
             GameManager.Instance.SetWinState(1, true);
+            AudioManager.Instance.PlayVox(win_1);
+            PlayWin();
             return;
         }
 
@@ -142,7 +172,8 @@ public class FoodGameManager : MonoBehaviour
                 //Gigachad
                 gameOutcome = 2;
                 GameManager.Instance.SetWinState(1, false);
-                return;
+
+               
             }
 
             else
@@ -150,16 +181,27 @@ public class FoodGameManager : MonoBehaviour
                 //Default Lose
                 gameOutcome = 3;
                 GameManager.Instance.SetWinState(1, false);
-                return;
+                
             }
 
-           
+            PlayLose();
+            return;
         }
     }
 
     public int RetrieveOutcome()
     {
         return gameOutcome;
+    }
+
+    public void PlayWin()
+    {
+        AudioManager.Instance.PlayVox(win_1);
+    }
+
+    public void PlayLose()
+    {
+        AudioManager.Instance.PlayVox(lose_1);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
