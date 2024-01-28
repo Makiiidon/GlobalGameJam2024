@@ -25,6 +25,14 @@ public class HandManager : MonoBehaviour
     // Flag
     [SerializeField] private bool scrolled = false;
 
+    // SFX
+    [SerializeField] private float groanTicks;
+    [SerializeField] private float groanInterval;
+    [SerializeField] private float maxGroanInterval;
+    [SerializeField] private float minGroanInterval;    
+    [SerializeField] private AudioClip groansSFX;
+    [SerializeField] private AudioClip backSFX;
+
 
     private void OnEnable()
     {
@@ -32,6 +40,8 @@ public class HandManager : MonoBehaviour
         {
             rb = GetComponent<Rigidbody2D>();
         }
+
+        groanInterval = minGroanInterval;
     }
 
     // Update is called once per frame
@@ -41,6 +51,9 @@ public class HandManager : MonoBehaviour
         {
             if (!isGameOver)
             {
+                PlayRandomGroans();
+
+
                 // Bounds of screen
                 if (handPrefab.transform.position.x < -7.35f)
                 {
@@ -119,5 +132,22 @@ public class HandManager : MonoBehaviour
     public void SetIsInstructionFinished(bool flag)
     {
         isInstructionFinished = flag;
+    }
+
+    void PlayRandomGroans()
+    {
+        groanTicks += Time.deltaTime;
+        if(groanTicks > groanInterval)
+        {
+            groanTicks = 0; 
+
+            int chosen = Random.Range(1, 3);
+            if (chosen == 1)
+                AudioManager.Instance.PlaySFX(groansSFX);
+            else if (chosen == 2)
+                AudioManager.Instance.PlaySFX(backSFX);
+
+            groanInterval = Random.Range(minGroanInterval, maxGroanInterval);
+        }
     }
 }

@@ -1591,8 +1591,8 @@ MonoBehaviour:
   handPrefab: {fileID: 3283301385001268201}
   speed: 0.3
   swerveForce: 0
-  minSwerveForce: 4000
-  maxSwerveForce: 6000
+  minSwerveForce: 10000
+  maxSwerveForce: 20000
   minSwerveInterval: 1
   maxSwerveInterval: 2.5
   SWERVE_INTERVAL: 1
@@ -1600,6 +1600,12 @@ MonoBehaviour:
   isGameOver: 0
   isInstructionFinished: 0
   scrolled: 0
+  groanTicks: 0
+  groanInterval: 0
+  maxGroanInterval: 4
+  minGroanInterval: 2
+  groansSFX: {fileID: 8300000, guid: c73b3f5575efc1442b019b05d70bcee0, type: 3}
+  backSFX: {fileID: 8300000, guid: 1d0bb9406f80d164eaac98b6079a777e, type: 3}
 --- !u!50 &2776669842042910372
 Rigidbody2D:
   serializedVersion: 4
@@ -2624,6 +2630,9 @@ MonoBehaviour:
   electricity: {fileID: 8317943978368576390}
   endText1: {fileID: 3429542739888980028}
   endText2: {fileID: 345208142997764386}
+  ohSFX: {fileID: 8300000, guid: e40505b137d2b06499df7ee90503b5f6, type: 3}
+  pinsSFX: {fileID: 8300000, guid: bdd9ec06150c735439a71394a444421a, type: 3}
+  explosionSFX: {fileID: 8300000, guid: c0039c70572df5349ba27e12b7c80e46, type: 3}
 --- !u!61 &5171753916193567066
 BoxCollider2D:
   m_ObjectHideFlags: 0
