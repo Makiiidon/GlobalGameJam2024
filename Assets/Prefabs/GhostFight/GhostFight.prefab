@@ -110,11 +110,11 @@ Transform:
   m_GameObject: {fileID: 292904488108032013}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.28, y: -0.14999998, z: 0}
+  m_LocalPosition: {x: 0, y: 0.38, z: 9.914463}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1197992261046355865}
+  m_Father: {fileID: 7102393261993909942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &752656404374051880
 SpriteRenderer:
@@ -198,7 +198,8 @@ Transform:
   m_LocalPosition: {x: -0.28, y: -0.53, z: -9.914463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 74203362018007915}
   m_Father: {fileID: 1197992261046355865}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1678004200841874854
@@ -229,6 +230,8 @@ MonoBehaviour:
   animator: {fileID: 5086574300362334698}
   ghostUIManager: {fileID: 6059177129419861783}
   playerUIManager: {fileID: 1394806932782357860}
+  aboutLeftSFX: {fileID: 8300000, guid: 2d24d28b4dc6dca438e9375b1e6ee5f3, type: 3}
+  aboutRightSFX: {fileID: 8300000, guid: 9620c46f50e920344b74007ff6a7fb9d, type: 3}
 --- !u!95 &5086574300362334698
 Animator:
   serializedVersion: 5
@@ -538,6 +541,10 @@ MonoBehaviour:
   hitSFX1: {fileID: 8300000, guid: 146b383fc3a20704fa353f7931e6fc73, type: 3}
   hitSFX2: {fileID: 8300000, guid: 47d10470731eb6f418e9058391c7eb2b, type: 3}
   hitSFX3: {fileID: 8300000, guid: bb9cdb5ef8b07f947b9a966876113751, type: 3}
+  ghostHitSFX: {fileID: 8300000, guid: 6245f7d37766d6743aea25cf5d9833cc, type: 3}
+  punchHitGhostSFX: {fileID: 8300000, guid: 44705dbe51f69994097de93e0d1b0c87, type: 3}
+  dadHitSFX: {fileID: 8300000, guid: a9d65b8f35f6405439e2107810cdaef3, type: 3}
+  dodgeSFX: {fileID: 8300000, guid: 20e5e01b145af0741b3a6185907bc067, type: 3}
 --- !u!1 &1686369974224813798
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priestTimerText: {fileID: 3604223662431161778}
-  ticks: 55
+  ticks: 0
   isGhostDead: 0
   playerManager: {fileID: 2778508470666374197}
   playerUIManager: {fileID: 1394806932782357860}
@@ -679,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2537fbe3be0684891138cec4f20b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 1036884209689940797}
   instructionPanel: {fileID: 8594093551868853505}
   isInstructionsFinished: 0
 --- !u!95 &1036884209689940797
@@ -3030,7 +3037,6 @@ Transform:
   - {fileID: 5223951919634144014}
   - {fileID: 328186128049907480}
   - {fileID: 7102393261993909942}
-  - {fileID: 74203362018007915}
   - {fileID: 7996505823544412230}
   - {fileID: 257484260942108732}
   - {fileID: 6924689254675774193}

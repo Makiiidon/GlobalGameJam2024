@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!95 &305701112 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1036884209689940797, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+  m_PrefabInstance: {fileID: 7231228357440873492}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1621413374
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +227,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1394806932782357860, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 305701112}
+    - target: {fileID: 1678004200841874854, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+      propertyPath: aboutLeftSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d24d28b4dc6dca438e9375b1e6ee5f3, type: 3}
+    - target: {fileID: 1678004200841874854, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+      propertyPath: aboutRightSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 9620c46f50e920344b74007ff6a7fb9d, type: 3}
+    - target: {fileID: 2778508470666374197, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+      propertyPath: dodgeSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 20e5e01b145af0741b3a6185907bc067, type: 3}
+    - target: {fileID: 2778508470666374197, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+      propertyPath: dadHitSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a9d65b8f35f6405439e2107810cdaef3, type: 3}
+    - target: {fileID: 2778508470666374197, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+      propertyPath: ghostHitSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 6245f7d37766d6743aea25cf5d9833cc, type: 3}
+    - target: {fileID: 2778508470666374197, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
+      propertyPath: punchHitGhostSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 44705dbe51f69994097de93e0d1b0c87, type: 3}
     - target: {fileID: 8842028039552562676, guid: 1e9b64954cf10fa42a188b6c0e02a04c, type: 3}
       propertyPath: m_Name
       value: GhostFight

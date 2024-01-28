@@ -53,6 +53,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private AudioClip hitSFX1;
     [SerializeField] private AudioClip hitSFX2;
     [SerializeField] private AudioClip hitSFX3;
+    [SerializeField] private AudioClip ghostHitSFX;
+    [SerializeField] private AudioClip punchHitGhostSFX;
+    [SerializeField] private AudioClip dadHitSFX;
+    [SerializeField] private AudioClip dodgeSFX;
 
     private void OnEnable()
     {
@@ -143,10 +147,12 @@ public class PlayerManager : MonoBehaviour
     IEnumerator LeftPunch()
     {
         spriteRenderer.sprite = leftPunchSprite;
-
         enemyManager.SetHitSprite();
+        AudioManager.Instance.PlayVox(punchHitGhostSFX);
+        AudioManager.Instance.PlaySFX(ghostHitSFX);
         yield return new WaitForSeconds(playerPunchDelay);
         enemyManager.SetBaseSprite();
+        PlayRandomHit();
         spriteRenderer.sprite = baseFistSprite;
         isPunchingLeft = !isPunchingLeft;
         didPunch = false;
@@ -155,9 +161,12 @@ public class PlayerManager : MonoBehaviour
     IEnumerator RightPunch()
     {
         spriteRenderer.sprite = rightPunchSprite;
+        AudioManager.Instance.PlayVox(punchHitGhostSFX);
+        AudioManager.Instance.PlaySFX(ghostHitSFX);
         enemyManager.SetFlippedHitSprite();
         yield return new WaitForSeconds(playerPunchDelay);
         enemyManager.SetBaseSprite();
+        PlayRandomHit();
         spriteRenderer.sprite = baseFistSprite;
         isPunchingLeft = !isPunchingLeft;
         didPunch = false;
@@ -166,6 +175,7 @@ public class PlayerManager : MonoBehaviour
     IEnumerator LeftDodge()
     {
         spriteRenderer.sprite = dodgeSprite;
+        AudioManager.Instance.PlaySFX(dodgeSFX);
         yield return new WaitForSeconds(dodgeDelay);
         spriteRenderer.sprite = baseFistSprite;
         isDodging = false;
@@ -175,6 +185,7 @@ public class PlayerManager : MonoBehaviour
     {
         spriteRenderer.flipX = true;
         spriteRenderer.sprite = dodgeSprite;
+        AudioManager.Instance.PlaySFX(dodgeSFX);
         yield return new WaitForSeconds(dodgeDelay);
         spriteRenderer.sprite = baseFistSprite;
         isDodging = false;
@@ -194,6 +205,7 @@ public class PlayerManager : MonoBehaviour
         if(canBeDamaged)
         {
             currentHealth--;
+            AudioManager.Instance.PlaySFX(dadHitSFX);
             if (currentHealth <= 0 && !ghostUIManager.IsGhostDead())
             {
                 Debug.Log("YOU LOSE");
@@ -228,21 +240,14 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayRandomHit()
     {
-        hitTicks += Time.deltaTime;
-        if (hitTicks > hitInterval)
-        {
-            hitTicks = 0;
-
-            int chosen = Random.Range(1, 4);
-            if (chosen == 1)
-                AudioManager.Instance.PlaySFX(hitSFX1);
-            else if (chosen == 2)
-                AudioManager.Instance.PlaySFX(hitSFX2);
-            else if (chosen == 3)
-                AudioManager.Instance.PlaySFX(hitSFX3);
-
-            hitInterval = Random.Range(minHitInterval, maxHitInterval);
-        }
+        int chosen = Random.Range(1, 4);
+        if (chosen == 1)
+            AudioManager.Instance.PlaySFX(hitSFX1);
+        else if (chosen == 2)
+            AudioManager.Instance.PlaySFX(hitSFX2);
+        else if (chosen == 3)
+            AudioManager.Instance.PlaySFX(hitSFX3);
     }
+
 }
 
