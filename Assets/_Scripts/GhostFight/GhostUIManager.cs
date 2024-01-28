@@ -34,7 +34,7 @@ public class GhostUIManager : MonoBehaviour
                 playerManager.SetCanBeDamaged(false);
                 isGhostDead = true;
                 Debug.Log("Priest has arrived");
-                //GameManager.Instance.SetWinState(6, true);
+                GameManager.Instance.SetWinState(6, true);
             }
         }
     }
