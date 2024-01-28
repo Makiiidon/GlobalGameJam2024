@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Detector: {fileID: 181098426145301554}
-  m_SoundMinThreshold: 4
+  m_SoundMinThreshold: 1.5
 --- !u!1 &1553654020502869263
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,6 +942,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Manager: {fileID: 5596478524577185992}
+  m_Ghost: {fileID: 1261733581696656553}
+  m_Detector: {fileID: 181098426145301554}
 --- !u!1 &5432219329609822892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,8 +1511,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 1.47535, y: -2.1634002, z: 0}
-    m_Extent: {x: 3.2248502, y: 3.3638, z: 0}
+    m_Center: {x: 1.473, y: -2.1648998, z: 0}
+    m_Extent: {x: 3.2237, y: 3.362, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
