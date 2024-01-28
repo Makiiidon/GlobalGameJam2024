@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GhostScript : MonoBehaviour
 {
@@ -39,11 +40,14 @@ public class GhostScript : MonoBehaviour
         {
             Vector3 m_NewVector = this.gameObject.transform.localScale;
 
-            m_NewVector.x += this.m_GhostSpeed * this.m_SpeedMultiplier / 4.0f;
-            m_NewVector.y += this.m_GhostSpeed * this.m_SpeedMultiplier / 4.0f;
+            m_NewVector.x += this.m_GhostSpeed * this.m_SpeedMultiplier / 8.0f;
+            m_NewVector.y += this.m_GhostSpeed * this.m_SpeedMultiplier / 8.0f;
 
             this.gameObject.transform.localScale = m_NewVector;
         }
+
+        if (this.gameObject.transform.localScale.x > 8.0f)
+            SceneManager.LoadScene(1); //gameOver
     }
 
     public float GhostSpeed { get { return this.m_GhostSpeed; } set { this.m_GhostSpeed = value; } }

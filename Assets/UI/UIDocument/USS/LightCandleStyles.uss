@@ -3,5 +3,13 @@
 }
 
 #ScrollIcon {
-	--unity-image: url('/Assets/Sprites/LightTheCandle/UI/ScrollMouse.png');
+	--unity-image: url('/Assets/Sprites/LightTheCandle/UI/MouseScroll.png');
+}
+
+#MicIcon{
+	--unity-image: url('/Assets/Sprites/LightTheCandle/UI/mic.png');
+}
+
+#ScrollText {
+
 }

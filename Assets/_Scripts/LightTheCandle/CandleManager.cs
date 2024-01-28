@@ -31,7 +31,7 @@ public class CandleManager : MonoBehaviour
     private void Update()
     {
         if (this.m_WaveLevel >= 10)
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
     }
 
     public IEnumerator CandleWave()
