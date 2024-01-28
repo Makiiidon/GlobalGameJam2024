@@ -1339,6 +1339,10 @@ MonoBehaviour:
   Painting: {fileID: 8825901693822402938}
   Hands: {fileID: 8738376624377103118}
   Sparkles: {fileID: 2423676323452968262}
+  hmm: {fileID: 8300000, guid: d0cfbd51142bca843846108d6b0df3ec, type: 3}
+  creak: {fileID: 8300000, guid: b72d36c1c9f9ddc47a35279754503f4b, type: 3}
+  littlemore: {fileID: 8300000, guid: e28ab07d341051f4286bbb7c08cfcc8e, type: 3}
+  likethis: {fileID: 8300000, guid: 9cc83e851a272d84891182c07e11edfe, type: 3}
   paintingStrength: 0
   armStrength: 0
   initialAngle: 0

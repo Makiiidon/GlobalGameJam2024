@@ -43,6 +43,13 @@ public class SpeechRecognition : MonoBehaviour
     [SerializeField] private List<string> positive = new List<string>();
     [SerializeField] private List<string> negative = new List<string>();
 
+    [SerializeField] private AudioClip tyMom;
+    [SerializeField] private AudioClip yesMom;
+    [SerializeField] private AudioClip delightMom;
+    [SerializeField] private AudioClip whyMom;
+    [SerializeField] private AudioClip noMom;
+    [SerializeField] private AudioClip meanMom;
+
     [SerializeField] TMP_Text tutorialText;
     bool startTutAnim = false;
 
@@ -114,6 +121,7 @@ public class SpeechRecognition : MonoBehaviour
         if (happinessMeter > 3)
         {
             happinessMeter = 3;
+            GameManager.Instance.SetWinState(5, true); 
             Debug.Log("Win");
         }
 
@@ -177,6 +185,7 @@ public class SpeechRecognition : MonoBehaviour
         if (gameOverCtr >= 3)
         {
             // Add Game Over
+            GameManager.Instance.SetWinState(5, false);
             Debug.Log("You Lose");
         }
     }
@@ -194,6 +203,23 @@ public class SpeechRecognition : MonoBehaviour
 
     void NegativeFeedback()
     {
+        int rand = UnityEngine.Random.Range(1, 4);
+        Debug.Log(rand);
+        switch (rand)
+        {
+            case 1:
+                AudioManager.Instance.PlaySFX(meanMom);
+                break;
+            case 2:
+                AudioManager.Instance.PlaySFX(noMom);
+                break;
+            case 3:
+                AudioManager.Instance.PlaySFX(whyMom);
+                break;
+            case 4:
+                AudioManager.Instance.PlaySFX(whyMom);
+                break;
+        }
         //Debug.Log("Bad");
         happinessMeter--;
         if (happinessMeter < -3)
@@ -203,6 +229,23 @@ public class SpeechRecognition : MonoBehaviour
 
     void PositiveFeedback()
     {
+        int rand = UnityEngine.Random.Range(1, 4);
+        Debug.Log(rand);
+        switch (rand)
+        {
+            case 1:
+                AudioManager.Instance.PlaySFX(tyMom);
+                break;
+            case 2:
+                AudioManager.Instance.PlaySFX(delightMom);
+                break;
+            case 3:
+                AudioManager.Instance.PlaySFX(yesMom);
+                break;
+            case 4:
+                AudioManager.Instance.PlaySFX(yesMom);
+                break;
+        }
         //Debug.Log(word);
         happinessMeter++;
         if(happinessMeter >= 3)
@@ -213,6 +256,7 @@ public class SpeechRecognition : MonoBehaviour
 
     void RecognizeSpeech(PhraseRecognizedEventArgs speech)
     {
+       
         //Debug.Log(speech.text);
         if (!actions.ContainsKey(speech.text))
         {

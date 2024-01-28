@@ -5665,6 +5665,12 @@ MonoBehaviour:
   - Why are you here
   - Stupid
   - You Suck
+  tyMom: {fileID: 8300000, guid: e4685ca8d746be04487c988f15d5d7ed, type: 3}
+  yesMom: {fileID: 8300000, guid: d233bd8299de69e429a510a55be7ebd5, type: 3}
+  delightMom: {fileID: 8300000, guid: e8553e924aeae16469b78cfa3e38cd80, type: 3}
+  whyMom: {fileID: 8300000, guid: aa854637b487c064e9624868d4bfa938, type: 3}
+  noMom: {fileID: 8300000, guid: 616c7617871c6be4b99de173e3c20b28, type: 3}
+  meanMom: {fileID: 8300000, guid: 3c3e0ee3297370249b820d2aa7943013, type: 3}
   tutorialText: {fileID: 396603952214636820}
 --- !u!82 &3379863966689488092
 AudioSource:
@@ -5854,7 +5860,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.85
+  m_fontSize: 38.9
   m_fontSizeBase: 37.26
   m_fontWeight: 400
   m_enableAutoSizing: 1
