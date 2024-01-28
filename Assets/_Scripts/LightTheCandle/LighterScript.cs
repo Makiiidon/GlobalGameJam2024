@@ -15,6 +15,10 @@ public class LighterScript : MonoBehaviour
 
     [SerializeField] private GameObject m_LighterLight;
 
+    [Space]
+    [SerializeField] private AudioClip m_LighterFlicker;
+    [SerializeField] private AudioClip m_LitSound;
+
     private void OnEnable()
     {
         Cursor.visible = false;
@@ -38,6 +42,7 @@ public class LighterScript : MonoBehaviour
             this.m_Collider.enabled = true;
 
             this.m_ScrollValue = 0.0f;
+            AudioManager.Instance.PlaySFX(this.m_LighterFlicker);
             this.StartCoroutine(this.Flicker(0.5f));
         }
 
@@ -73,6 +78,11 @@ public class LighterScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Candle"))
+        {
+            if (collision.gameObject.GetComponent<CandleScript>().LitState == false)
+                AudioManager.Instance.PlaySFX(this.m_LitSound);
+
             collision.gameObject.GetComponent<CandleScript>().LitState = true;
+        }
     }
 }

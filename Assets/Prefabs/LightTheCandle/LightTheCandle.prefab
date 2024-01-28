@@ -505,6 +505,7 @@ MonoBehaviour:
   m_PrefabSpawned: {fileID: 7521567950718820725, guid: 9bffc20dffcc14e4080d27701d57bdb0, type: 3}
   m_Ghost: {fileID: 1261733581696656553}
   m_CandleList: []
+  m_UnlitSound: {fileID: 8300000, guid: c963c0023fd4aff499524d9f78cec26c, type: 3}
 --- !u!114 &181098426145301554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,9 +1398,17 @@ PrefabInstance:
       value: Lighter
       objectReference: {fileID: 0}
     - target: {fileID: 2962832126869267002, guid: e7ab4987b5072614bb80eea2d78ec4d1, type: 3}
+      propertyPath: m_LitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 48c5a3d1fac6a1a479286848e72004be, type: 3}
+    - target: {fileID: 2962832126869267002, guid: e7ab4987b5072614bb80eea2d78ec4d1, type: 3}
       propertyPath: m_LighterLight
       value: 
       objectReference: {fileID: 1553654020502869263}
+    - target: {fileID: 2962832126869267002, guid: e7ab4987b5072614bb80eea2d78ec4d1, type: 3}
+      propertyPath: m_LighterFlicker
+      value: 
+      objectReference: {fileID: 8300000, guid: a0d1af806bb44164395db372fefdda81, type: 3}
     - target: {fileID: 6135681592429902484, guid: e7ab4987b5072614bb80eea2d78ec4d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1511,8 +1520,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 1.4798499, y: -2.1598501, z: 0}
-    m_Extent: {x: 3.21985, y: 3.36895, z: 0}
+    m_Center: {x: 1.4723499, y: -2.1664, z: 0}
+    m_Extent: {x: 3.22095, y: 3.3602, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

@@ -14,6 +14,8 @@ public class CandleManager : MonoBehaviour
 
     [SerializeField]private List<CandleScript> m_CandleList = new List<CandleScript>();
 
+    [SerializeField] private AudioClip m_UnlitSound;
+
     private int m_WaveLevel = 1;
     private int m_GhostSpeedMultiplier = 1;
 
@@ -60,7 +62,10 @@ public class CandleManager : MonoBehaviour
             int m_Random = Random.Range(0,10);
 
             if (m_Random > 5)
+            {
                 candle.LitState = false;
+                AudioManager.Instance.PlaySFX(this.m_UnlitSound);
+            }
         }
 
         this.m_GhostSpeedMultiplier = 1;

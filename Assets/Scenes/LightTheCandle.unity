@@ -123,6 +123,57 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &67852763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 67852765}
+  - component: {fileID: 67852764}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &67852764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67852763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d7f8413bdcaa84cbede730d0d520b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vox: {fileID: 0}
+  sfx: {fileID: 0}
+  bgm: {fileID: 0}
+  bgmInitMusic: {fileID: 0}
+  voxVol: 1
+  sfxVol: 1
+  bgmVol: 1
+--- !u!4 &67852765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67852763}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6132358608661225755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,6 +182,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2629208438343685618, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
+      propertyPath: m_LitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 48c5a3d1fac6a1a479286848e72004be, type: 3}
+    - target: {fileID: 2629208438343685618, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
+      propertyPath: m_UnlitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c963c0023fd4aff499524d9f78cec26c, type: 3}
+    - target: {fileID: 3135224932170768361, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
+      propertyPath: m_LitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 48c5a3d1fac6a1a479286848e72004be, type: 3}
+    - target: {fileID: 3135224932170768361, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
+      propertyPath: m_UnlitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c963c0023fd4aff499524d9f78cec26c, type: 3}
     - target: {fileID: 4705749131955325868, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -175,6 +242,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightTheCandle
       objectReference: {fileID: 0}
+    - target: {fileID: 5596478524577185992, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
+      propertyPath: m_UnlitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c963c0023fd4aff499524d9f78cec26c, type: 3}
+    - target: {fileID: 7825200448399252655, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
+      propertyPath: m_LitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 48c5a3d1fac6a1a479286848e72004be, type: 3}
+    - target: {fileID: 7825200448399252655, guid: 1542fa0372fdc2240a04c24a243a44ec, type: 3}
+      propertyPath: m_LighterFlicker
+      value: 
+      objectReference: {fileID: 8300000, guid: a0d1af806bb44164395db372fefdda81, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -185,3 +264,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 6132358608661225755}
+  - {fileID: 67852765}

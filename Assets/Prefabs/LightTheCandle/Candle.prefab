@@ -259,3 +259,5 @@ MonoBehaviour:
   m_Candlelight: {fileID: 313756014324583727}
   m_UnlitColor: {r: 0.8490566, g: 0.6915515, b: 0.33962262, a: 1}
   m_LitColor: {r: 1, g: 0.5838506, b: 0.1830188, a: 1}
+  m_LitSound: {fileID: 8300000, guid: 48c5a3d1fac6a1a479286848e72004be, type: 3}
+  m_UnlitSound: {fileID: 8300000, guid: c963c0023fd4aff499524d9f78cec26c, type: 3}
