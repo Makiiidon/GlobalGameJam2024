@@ -20,14 +20,17 @@ public class LightCandleScript : MonoBehaviour
         this.m_TutorialScreen = this.root.Q<VisualElement>("TutorialScreen");
         this.m_Scream = this.root.Q<Label>("Scream");
 
-        this.m_TutorialScreen.AddManipulator(new Clickable(evt => { this.m_TutorialScreen.style.display = DisplayStyle.None; 
-                                                                    this.m_Manager.StartCoroutine(this.m_Manager.CandleWave()); }));
-
         this.StartCoroutine(this.VoiceChecker());
     }
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            this.m_TutorialScreen.style.display = DisplayStyle.None;
+            this.m_Manager.StartCoroutine(this.m_Manager.CandleWave());
+        }
+
         if (this.m_Ghost.activeSelf)
             this.m_Scream.style.display = DisplayStyle.Flex;
 
