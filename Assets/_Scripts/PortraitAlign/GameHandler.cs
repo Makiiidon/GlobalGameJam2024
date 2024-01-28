@@ -9,14 +9,14 @@ using UnityEngine.UI;
 public class GameHandler : MonoBehaviour
 {
     [SerializeField] Transform Painting;
-
     [SerializeField] Transform Hands;
+    [SerializeField] GameObject Sparkles;
 
     bool hasStarted = true;
 
     [SerializeField] float paintingStrength;
     [SerializeField] float armStrength;
-    float timer = 3.0f;
+    float timer = 4.0f;
     [SerializeField] float initialAngle = 0.0f;
 
     [SerializeField] float elapsedTime = 0.0f;
@@ -46,10 +46,13 @@ public class GameHandler : MonoBehaviour
                 if (elapsedTime > timer)
                 {
                     
-                    paintingStrength = Random.Range(-15.0f, 15.0f);
+                    paintingStrength = Random.Range(-10.0f, 10.0f);
                     elapsedTime = 0.0f;
                     if (firstTime)
+                    {
                         firstTime = false;
+                        timer = 3.0f;
+                    }
                 }
                 if (firstTime)
                 {
@@ -66,6 +69,7 @@ public class GameHandler : MonoBehaviour
                 }
                 if (!firstTime)
                 {
+                    Debug.Log("Arm Strength: " + armStrength + " Painting Strength: " + paintingStrength);
                     if (Mathf.Abs(armStrength) > Mathf.Abs(paintingStrength))
                     {
 
@@ -104,7 +108,24 @@ public class GameHandler : MonoBehaviour
                
 
                 elapsedTime += Time.deltaTime;
+                float currentAngle = Painting.transform.rotation.eulerAngles.z;
+                if (currentAngle > 180)
+                {
+                    currentAngle -= 360.0f;
 
+                }
+                //Debug.Log("Current Angle: " + currentAngle);
+
+                if (currentAngle >= -5.0f && currentAngle <= 5.0f)
+                {
+                    Sparkles.SetActive(true);
+                    //Debug.Log("Within of Range");
+                }
+                else
+                {
+                   // Debug.Log("Outside of Range");
+                    Sparkles.SetActive(false);
+                }
             }
             else
             {
@@ -115,7 +136,7 @@ public class GameHandler : MonoBehaviour
                    
                 }
                 Debug.Log("Current Angle: " + currentAngle);
-                if (currentAngle >= -5.0f || currentAngle <= 5.0f) 
+                if (currentAngle >= -5.0f && currentAngle <= 5.0f) 
                 {
                     Debug.Log("You Win!");
                     //Insert Winning Code
