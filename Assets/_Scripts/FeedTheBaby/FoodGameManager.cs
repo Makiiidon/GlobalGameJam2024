@@ -11,6 +11,7 @@ public class FoodGameManager : MonoBehaviour
     [SerializeField] private bool isValidInputIngredient = false;
     private GameObject referenceFood = null;
     private bool isOccupiedSpace = true;
+
     private int taskAssigned = 0; //1 for types 1 and 2 for ingredient ...
     private int valAssigned = 0; // Refer to Itemcode Enum
 
@@ -22,6 +23,8 @@ public class FoodGameManager : MonoBehaviour
 
     public int waterVal = 0;
     public int milkVal = 0;
+
+    private int gameOutcome = 0;
 
 
 
@@ -55,7 +58,7 @@ public class FoodGameManager : MonoBehaviour
 
             referenceFood.GetComponent<ConsumeLabels>().TriggerAnim();
             //Wait for the animation to end
-            //referenceFood.SetActive(false);
+            
         }
 
         if (taskAssigned == 2)
@@ -66,7 +69,7 @@ public class FoodGameManager : MonoBehaviour
 
             referenceFood.GetComponent<ConsumeLabels>().TriggerAnim();
             //Wait for the animation to end
-            //referenceFood.SetActive(false);
+            
         }
 
         valAssigned = 0;
@@ -79,18 +82,20 @@ public class FoodGameManager : MonoBehaviour
     {
         if (myTask1 && myTask2) {
             Debug.Log("Done Mixing");
+            GetComponent<Animator>().SetInteger("Total Ingredients", 2);
             return true;
         }
 
         return false;
     }
 
-    private void ProcessResults()
+    public void ProcessResults()
     {
         //Win Condition
         if (waterVal == 1 && milkVal == 1)
         {
             //Send the information and proceed to next minigame
+            gameOutcome = 1;
             return;
         }
 
@@ -100,15 +105,22 @@ public class FoodGameManager : MonoBehaviour
             if (milkVal == 2 && waterVal == 1)
             {
                 //Gigachad
+                gameOutcome = 2;
                 return;
             }
 
             else
             {
                 //Default Lose
+                gameOutcome = 3;
                 return;
             }
         }
+    }
+
+    public int RetrieveOutcome()
+    {
+        return gameOutcome;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
