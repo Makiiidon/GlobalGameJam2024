@@ -33,7 +33,7 @@ public class CandleManager : MonoBehaviour
     private void Update()
     {
         if (this.m_WaveLevel >= 10)
-            SceneManager.LoadScene(1);
+            GameManager.Instance.SetWinState(4, true);
     }
 
     public IEnumerator CandleWave()

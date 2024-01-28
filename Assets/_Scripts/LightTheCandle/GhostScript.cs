@@ -47,7 +47,7 @@ public class GhostScript : MonoBehaviour
         }
 
         if (this.gameObject.transform.localScale.x > 8.0f)
-            SceneManager.LoadScene(1); //gameOver
+            GameManager.Instance.SetWinState(4, false);
     }
 
     public float GhostSpeed { get { return this.m_GhostSpeed; } set { this.m_GhostSpeed = value; } }
