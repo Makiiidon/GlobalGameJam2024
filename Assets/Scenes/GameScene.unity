@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!212 &7533446 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6927891298538098022, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
+  m_PrefabInstance: {fileID: 1304044867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &28791916
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,6 +1285,31 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2886027343991851559, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
   m_PrefabInstance: {fileID: 1304044867}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &707539955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707539953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f12ae77c211648428861e50f465411f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1704295467}
+  dadSPR: {fileID: 7533446}
+  momSPR: {fileID: 1407383187}
+  girlSPR: {fileID: 1846357307}
+  boySPR: {fileID: 1155724343}
+  loloSPR: {fileID: 842136703}
+  babySPR: {fileID: 2103351858}
+  altdad: {fileID: 21300000, guid: 1286ea2c7da30154c9b2ece837f66ece, type: 3}
+  altmom: {fileID: 21300000, guid: 2b3a9d292bb945a47885bf1356ed12a0, type: 3}
+  altgirl: {fileID: 21300000, guid: 192c59acbd943ae45a7d801b1e42b755, type: 3}
+  altboy: {fileID: 21300000, guid: f89d5ccbf773c7f439d6966c9db25c3a, type: 3}
+  altlolo: {fileID: 21300000, guid: 132c54c3828d7cb4c9db44a7247f8a91, type: 3}
+  altbaby: {fileID: 21300000, guid: abc5f0bfb797bfb4496b5582a87c6b66, type: 3}
 --- !u!1 &715928686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1522,11 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!212 &842136703 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5210189055342798975, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
+  m_PrefabInstance: {fileID: 1304044867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &882663868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1938,6 +1973,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1811609324062735231, guid: 7d50c2c601b84564f9072e47821b9a26, type: 3}
   m_PrefabInstance: {fileID: 1120587779}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &1155724343 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1181208692035997464, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
+  m_PrefabInstance: {fileID: 1304044867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1156591804
 GameObject:
   m_ObjectHideFlags: 0
@@ -2256,10 +2296,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6927891298538098022, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 35ed1f32107b1b444bf324a9701a2b87, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2886027343991851559, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 707539955}
   m_SourcePrefab: {fileID: 100100000, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
 --- !u!1001 &1363438386
 PrefabInstance:
@@ -2561,6 +2608,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401782011}
   m_CullTransparentMesh: 1
+--- !u!212 &1407383187 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3678012389609172008, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
+  m_PrefabInstance: {fileID: 1304044867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1464356499
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,6 +2898,12 @@ MonoBehaviour:
   - 'And this is what goes on with my HAPPY FAMILY :D '
   word: {fileID: 1368607162}
   activeLevel: 0
+  win1: 0
+  win2: 0
+  win3: 0
+  win4: 0
+  win5: 0
+  win6: 0
 --- !u!4 &1704295468
 Transform:
   m_ObjectHideFlags: 0
@@ -3028,6 +3086,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830737901}
   m_CullTransparentMesh: 1
+--- !u!212 &1846357307 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5295937002578285165, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
+  m_PrefabInstance: {fileID: 1304044867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1961181302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3205,6 +3268,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!212 &2103351858 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2343200624460090197, guid: 6d99a5ab07ab89d4eab034d59d3b2e9f, type: 3}
+  m_PrefabInstance: {fileID: 1304044867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

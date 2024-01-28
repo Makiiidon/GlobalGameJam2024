@@ -16,12 +16,12 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [SerializeField] int activeLevel = 0;
 
-    bool win1 = false;
-    bool win2 = false;
-    bool win3 = false;
-    bool win4 = false;
-    bool win5 = false;
-    bool win6 = false;
+    public bool win1 = false;
+    public bool win2 = false;
+    public bool win3 = false;
+    public bool win4 = false;
+    public bool win5 = false;
+    public bool win6 = false;
 
     bool fadeText = false;
     int wordCtr = 0;
