@@ -85,9 +85,10 @@ public class MixingColor : StateMachineBehaviour
        
         manager.ProcessResults();
 
-        
+
 
         //Process the new value color
+        Debug.LogError($"Outcome: {manager.RetrieveOutcome()}");
         if (manager.RetrieveOutcome() == 1)
         {
             spriteRender.color = colorGreen;

@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
+using TMPro;
 using static ConsumeLabels;
 
 public class FoodGameManager : MonoBehaviour
 {
-    
+    //UI
+    [SerializeField] private TextMeshProUGUI m_TextMeshProUGUI;
+
+
 
     [SerializeField] private bool isValidInputIngredient = false;
     private GameObject referenceFood = null;
@@ -53,29 +57,61 @@ public class FoodGameManager : MonoBehaviour
         if (taskAssigned == 1)
         {
             Debug.LogError("Ingredient 1");
-            valAssigned = valAssigned - 4;
+            milkVal = valAssigned - 4;
+            Debug.LogError(valAssigned);
             myTask1 = true;
 
             referenceFood.GetComponent<ConsumeLabels>().TriggerAnim();
-            //Wait for the animation to end
+            //Wait for the animation to end\
             
+            UpdateWallUI();
+
+
         }
 
         if (taskAssigned == 2)
         {
             Debug.LogError("Ingredient 2");
-            //valAssigned = valAssigned;
+            waterVal = valAssigned;
             myTask2 = true;
-
+            Debug.LogError(valAssigned);
             referenceFood.GetComponent<ConsumeLabels>().TriggerAnim();
             //Wait for the animation to end
-            
+            UpdateWallUI();
+
+
         }
 
         valAssigned = 0;
         taskAssigned = 0;
         referenceFood = null;
         IsCompleted();
+    }
+
+    private void UpdateWallUI()
+    {
+        string BaseText = "Milk Bottle Ingredients<br>";
+        string Line1;
+        string Line2;
+        if (MyTask1)       {
+            Line1 = "- Milk (Done) <br>" ;
+        }
+
+        else {
+            Line1 = "- Milk<br>";
+        }
+
+        if (MyTask2)
+        {
+            Line2 = "- Water (Done) <br>";
+        }
+
+        else
+        {
+            Line2 = "- Water<br>";
+        }
+
+        m_TextMeshProUGUI.text = BaseText + Line1 + Line2;
     }
 
     private bool IsCompleted()
