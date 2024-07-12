@@ -28,13 +28,29 @@ public class GameHandler : MonoBehaviour
     [SerializeField] TextMeshProUGUI clockText;
     [SerializeField] GameObject Panel;
     bool firstTime = true;
-
+    private bool gyroEnabled;
+    private Gyroscope gyro;
 
     // Start is called before the first frame update
     void OnEnable ()
     {
         paintingStrength = Random.Range(-15.0f, 15.0f);
         initialAngle = Painting.transform.rotation.eulerAngles.z;
+        gyroEnabled = EnableGyro();
+    }
+
+    private bool EnableGyro()
+    {
+        // Check if the device has a gyroscope
+        if (SystemInfo.supportsGyroscope)
+        {
+            gyro = Input.gyro;
+            gyro.enabled = true;
+            Debug.Log("Gyro is on!");
+            return true;
+        }
+        Debug.Log("Gyro is off!");
+        return false;
     }
 
     // Update is called once per frame
@@ -42,10 +58,22 @@ public class GameHandler : MonoBehaviour
     {
         if (hasStarted)
         {
-            if(totalTime > 0.0f)
+            if (gyroEnabled)
             {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                armStrength = mousePos.x;
+                // Read the gyroscope rotation rate
+                armStrength = gyro.rotationRateUnbiased.y * 100;
+
+                // Rotate the sprite around the Z axis based on the gyroscope's rotation rate
+               Debug.Log("Rotation Rate: " + gyro.rotationRateUnbiased);
+                // = -rotationRate.y * Time.deltaTime * 100;
+                Debug.Log("Arm Strength: " + armStrength);
+                //transform.rotation = Input.gyro.attitude;
+                //transform.Rotate(0, 0, -rotationRate.y * Time.deltaTime * 100);
+            }
+            if (totalTime > 0.0f)
+            {
+                //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                //armStrength = mousePos.x;
 
                 if (elapsedTime > timer)
                 {
