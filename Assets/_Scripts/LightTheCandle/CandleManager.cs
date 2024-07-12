@@ -27,6 +27,8 @@ public class CandleManager : MonoBehaviour
 
         foreach (CandleScript candle in m_Candles)
             this.m_CandleList.Add(candle);
+
+        GameManager.Instance.SetWinState(4, true);
     }
 
     private void Update()

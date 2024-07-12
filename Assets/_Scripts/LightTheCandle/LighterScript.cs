@@ -31,19 +31,23 @@ public class LighterScript : MonoBehaviour
         m_Position.z += Camera.main.nearClipPlane;
         this.gameObject.transform.position = m_Position;
 
-        if (Mathf.Abs(Input.mouseScrollDelta.y) == 1.0f)
-            this.m_ScrollValue += 0.1f;
+        //if (Mathf.Abs(Input.mouseScrollDelta.y) == 1.0f)
+        //    this.m_ScrollValue += 0.1f;
 
-
-        if (this.m_ScrollValue > 1.0f)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            this.m_LitState = true;
-            this.m_Collider.enabled = true;
-
-            this.m_ScrollValue = 0.0f;
             AudioManager.Instance.PlaySFX(this.m_LighterFlicker);
             this.StartCoroutine(this.Flicker(0.5f));
         }
+        //if (this.m_ScrollValue > 1.0f)
+        //{
+        //    this.m_LitState = true;
+        //    this.m_Collider.enabled = true;
+
+        //    this.m_ScrollValue = 0.0f;
+        //    AudioManager.Instance.PlaySFX(this.m_LighterFlicker);
+        //    this.StartCoroutine(this.Flicker(0.5f));
+        //}
 
         switch (this.m_LitState)
         {
