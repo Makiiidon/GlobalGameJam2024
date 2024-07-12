@@ -195,7 +195,6 @@ RectTransform:
   - {fileID: 8142827450958626393}
   - {fileID: 6299094249209340645}
   - {fileID: 4719013360499667973}
-  - {fileID: 7929987653176206726}
   - {fileID: 4720975880953614751}
   - {fileID: 3582773502041127913}
   - {fileID: 5928772217472068977}
@@ -610,8 +609,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -294, y: -225.07002}
-  m_SizeDelta: {x: 33.421, y: 35.8591}
+  m_AnchoredPosition: {x: -300.02, y: -218.95}
+  m_SizeDelta: {x: 47.9682, y: 45.8917}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1735904928968960796
 CanvasRenderer:
@@ -634,7 +633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -716,7 +715,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SCROLL DOWN, MOVE BACK
+  m_text: SWIPE DOWN, MOVE BACK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 12fa1c0bdca2b9746af7923161ac8fa0, type: 2}
   m_sharedMaterial: {fileID: 8083467807182224262, guid: 12fa1c0bdca2b9746af7923161ac8fa0, type: 2}
@@ -785,81 +784,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &2223806345038966645
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7929987653176206726}
-  - component: {fileID: 1012090789001861254}
-  - component: {fileID: 6894361674511371788}
-  m_Layer: 5
-  m_Name: Image (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7929987653176206726
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2223806345038966645}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.9375, y: 2.9375, z: 2.9375}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 8492101661168069762}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -342.20004, y: -218}
-  m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1012090789001861254
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2223806345038966645}
-  m_CullTransparentMesh: 1
---- !u!114 &6894361674511371788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2223806345038966645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5e0fbea6ed3bb624a976958ec5f78919, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &2514618684348987838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,7 +1520,7 @@ MonoBehaviour:
   minSwerveInterval: 1
   maxSwerveInterval: 2.5
   SWERVE_INTERVAL: 1
-  pullForce: 200
+  pullForce: 1000
   isGameOver: 0
   isInstructionFinished: 0
   scrolled: 0
@@ -1606,6 +1530,7 @@ MonoBehaviour:
   minGroanInterval: 2
   groansSFX: {fileID: 8300000, guid: c73b3f5575efc1442b019b05d70bcee0, type: 3}
   backSFX: {fileID: 8300000, guid: 1d0bb9406f80d164eaac98b6079a777e, type: 3}
+  swipeListener: {fileID: 5844134453663106433}
 --- !u!50 &2776669842042910372
 Rigidbody2D:
   serializedVersion: 4
@@ -1870,6 +1795,7 @@ Transform:
   - {fileID: 386386040937185426}
   - {fileID: 9071421351771476656}
   - {fileID: 6217729704302541487}
+  - {fileID: 5988385745960107655}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5660564903722323087
@@ -2525,6 +2451,59 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &8484808351260797023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5988385745960107655}
+  - component: {fileID: 5844134453663106433}
+  m_Layer: 0
+  m_Name: SwipeListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5988385745960107655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484808351260797023}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.202571, y: -1.4684732, z: -0.027758513}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6815013470537455630}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5844134453663106433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484808351260797023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c52040e0d356884a866f616474f7057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSwipeCancelled:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSwipe:
+    m_PersistentCalls:
+      m_Calls: []
+  _sensetivity: 10
+  _continuousDetection: 0
+  _swipeDetectionMode: 2
 --- !u!1 &8772749791927055453
 GameObject:
   m_ObjectHideFlags: 0

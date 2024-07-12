@@ -1,7 +1,9 @@
+using GG.Infrastructure.Utils.Swipe;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -58,10 +60,16 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private AudioClip dadHitSFX;
     [SerializeField] private AudioClip dodgeSFX;
 
+    // For Swipe 
+    [SerializeField] private SwipeListener swipeListener;
+
     private void OnEnable()
     {
         currentHealth = maxHealth;
         currentStamina = maxStamina;
+
+        // Swipe
+        swipeListener.OnSwipe.AddListener(OnSwipe);
     }
 
     // Update is called once per frame
@@ -83,33 +91,36 @@ public class PlayerManager : MonoBehaviour
                     }
                 }
 
-                if (Input.GetMouseButtonDown(0) && !isDodging && !isCooldown) // Left Punch
-                {
-                    didPunch = true;
-                    if (isPunchingLeft)
-                    {
-                        StartCoroutine(LeftPunch());
-                    }
-                    else if (!isPunchingLeft)
-                    {
-                        StartCoroutine(RightPunch());
-                    }
-                    isCooldown = true;
-                }
-                else if (Input.GetKeyDown(KeyCode.A) && !didPunch && currentStamina >= 1)
-                {
-                    currentStamina -= 1;
-                    isDodging = true;
-                    dodgedLeft = true;
-                    StartCoroutine(LeftDodge());
-                }
-                else if (Input.GetKeyDown(KeyCode.D) && !didPunch && currentStamina >= 1)
-                {
-                    currentStamina -= 1;
-                    isDodging = true;
-                    dodgedLeft = false;
-                    StartCoroutine(RightDodge());
-                }
+               /* Temporary disable for mobile
+               if (Input.GetMouseButtonDown(0) && !isDodging && !isCooldown) // Left Punch
+               {
+                   didPunch = true;
+                   if (isPunchingLeft)
+                   {
+                       StartCoroutine(LeftPunch());
+                   }
+                   else if (!isPunchingLeft)
+                   {
+                       StartCoroutine(RightPunch());
+                   }
+                   isCooldown = true;
+               }
+
+               else if (Input.GetKeyDown(KeyCode.A) && !didPunch && currentStamina >= 1)
+               {
+                   currentStamina -= 1;
+                   isDodging = true;
+                   dodgedLeft = true;
+                   StartCoroutine(LeftDodge());
+               }
+               else if (Input.GetKeyDown(KeyCode.D) && !didPunch && currentStamina >= 1)
+               {
+                   currentStamina -= 1;
+                   isDodging = true;
+                   dodgedLeft = false;
+                   StartCoroutine(RightDodge());
+               }
+               */
 
                 // Stamina Regen
                 if (currentStamina == 0)
@@ -136,6 +147,43 @@ public class PlayerManager : MonoBehaviour
                 StartCoroutine(playerUIManager.TriggerFadeIn());
             }
         }    
+    }
+
+    private void OnSwipe(string swipe)
+    {
+        // Swipe left right for dodging, swipe up for punch
+        if (swipe == "Up" && !isDodging && !isCooldown)
+        {
+            didPunch = true;
+            if (isPunchingLeft)
+            {
+                StartCoroutine(LeftPunch());
+            }
+            else if (!isPunchingLeft)
+            {
+                StartCoroutine(RightPunch());
+            }
+            isCooldown = true;
+        }
+        else if (swipe == "Left" && !didPunch && currentStamina >= 1)
+        {
+            currentStamina -= 1;
+            isDodging = true;
+            dodgedLeft = true;
+            StartCoroutine(LeftDodge());
+        }
+        else if (swipe == "Right" && !didPunch && currentStamina >= 1)
+        {
+            currentStamina -= 1;
+            isDodging = true;
+            dodgedLeft = false;
+            StartCoroutine(RightDodge());
+        }
+    }
+
+    private void OnDisable()
+    {
+        swipeListener.OnSwipe.RemoveListener(OnSwipe);
     }
 
     void UpdateText()

@@ -1,3 +1,4 @@
+using GG.Infrastructure.Utils.Swipe;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,8 @@ public class HandManager : MonoBehaviour
     [SerializeField] private AudioClip groansSFX;
     [SerializeField] private AudioClip backSFX;
 
+    // For Swipe 
+    [SerializeField] private SwipeListener swipeListener;
 
     private void OnEnable()
     {
@@ -42,6 +45,9 @@ public class HandManager : MonoBehaviour
         }
 
         groanInterval = minGroanInterval;
+
+        // Swipe
+        swipeListener.OnSwipe.AddListener(OnSwipe);
     }
 
     // Update is called once per frame
@@ -76,11 +82,13 @@ public class HandManager : MonoBehaviour
                     SWERVE_INTERVAL = Random.Range(minSwerveInterval, maxSwerveInterval);
                 }
 
+                /* Temporarily disable for mobile
                 // Bring back hand using scroll wheel down
                 if (Input.mouseScrollDelta.y < 0)
                 {
                     scrolled = true;               
                 }
+                */
             }
             else
             {
@@ -96,6 +104,20 @@ public class HandManager : MonoBehaviour
             rb.AddForce(new Vector2(0, -1.0f * pullForce * Time.deltaTime));
             scrolled = false;
         }
+    }
+
+    private void OnSwipe(string swipe)
+    {
+        // If scrolling down, move hand down
+        if(swipe == "Down")
+        {
+            scrolled = true;
+        }
+    }
+
+    private void OnDisable()
+    {
+        swipeListener.OnSwipe.RemoveListener(OnSwipe);
     }
 
     void RandomSwerve()
